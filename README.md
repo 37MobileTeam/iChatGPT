@@ -59,6 +59,7 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 <img src="screenshot/04.jpeg" width="800" height:auto alt="screenshot/04.jpeg"/>
 <img src="screenshot/05.jpeg" width="800" height:auto alt="screenshot/05.jpeg"/>
 <img src="screenshot/06.jpeg" width="800" height:auto alt="screenshot/06.jpeg"/>
+<img src="screenshot/07.jpeg" width="800" height:auto alt="screenshot/07.jpeg"/>
 
 
 ### 五、特别鸣谢
