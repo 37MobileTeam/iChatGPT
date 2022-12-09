@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6DAA91802943448D004ACD01 /* MarkdownText in Frameworks */ = {isa = PBXBuildFile; productRef = 6DAA917F2943448D004ACD01 /* MarkdownText */; };
+		6DAA9182294346D8004ACD01 /* MarkdownStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA9181294346D8004ACD01 /* MarkdownStyles.swift */; };
 		6DC88ADE2942C8AD00DA6C55 /* iChatGPTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88ADD2942C8AD00DA6C55 /* iChatGPTApp.swift */; };
 		6DC88AE02942C8AD00DA6C55 /* AIChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88ADF2942C8AD00DA6C55 /* AIChatView.swift */; };
 		6DC88AE22942C8AE00DA6C55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DC88AE12942C8AE00DA6C55 /* Assets.xcassets */; };
@@ -20,7 +22,6 @@
 		6DC88B102942C8DC00DA6C55 /* AIChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88B0E2942C8DB00DA6C55 /* AIChatModel.swift */; };
 		6DC88B112942C8DC00DA6C55 /* ChatGPT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88B0F2942C8DB00DA6C55 /* ChatGPT.swift */; };
 		6DC88B142942C8E000DA6C55 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88B132942C8E000DA6C55 /* Strings.swift */; };
-		6DC88B172942C91000DA6C55 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6DC88B162942C91000DA6C55 /* MarkdownUI */; };
 		6DC88B192942D0B700DA6C55 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88B182942D0B700DA6C55 /* Dates.swift */; };
 		6DC88B1B2942E84A00DA6C55 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88B1A2942E84A00DA6C55 /* MultilineTextField.swift */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6DAA9181294346D8004ACD01 /* MarkdownStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownStyles.swift; sourceTree = "<group>"; };
 		6DC88ADA2942C8AD00DA6C55 /* iChatGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChatGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC88ADD2942C8AD00DA6C55 /* iChatGPTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iChatGPTApp.swift; sourceTree = "<group>"; };
 		6DC88ADF2942C8AD00DA6C55 /* AIChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIChatView.swift; sourceTree = "<group>"; };
@@ -68,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DC88B172942C91000DA6C55 /* MarkdownUI in Frameworks */,
+				6DAA91802943448D004ACD01 /* MarkdownText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +164,7 @@
 		6DC88B122942C8E000DA6C55 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				6DAA9181294346D8004ACD01 /* MarkdownStyles.swift */,
 				6DC88B132942C8E000DA6C55 /* Strings.swift */,
 				6DC88B182942D0B700DA6C55 /* Dates.swift */,
 				6DC88B1A2942E84A00DA6C55 /* MultilineTextField.swift */,
@@ -186,7 +189,7 @@
 			);
 			name = iChatGPT;
 			packageProductDependencies = (
-				6DC88B162942C91000DA6C55 /* MarkdownUI */,
+				6DAA917F2943448D004ACD01 /* MarkdownText */,
 			);
 			productName = iChatGPT;
 			productReference = 6DC88ADA2942C8AD00DA6C55 /* iChatGPT.app */;
@@ -262,7 +265,7 @@
 			);
 			mainGroup = 6DC88AD12942C8AD00DA6C55;
 			packageReferences = (
-				6DC88B152942C91000DA6C55 /* XCRemoteSwiftPackageReference "MarkdownUI" */,
+				6DAA917E2943448D004ACD01 /* XCRemoteSwiftPackageReference "MarkdownText" */,
 			);
 			productRefGroup = 6DC88ADB2942C8AD00DA6C55 /* Products */;
 			projectDirPath = "";
@@ -306,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DAA9182294346D8004ACD01 /* MarkdownStyles.swift in Sources */,
 				6DC88B0C2942C8D200DA6C55 /* ChatContextMenu.swift in Sources */,
 				6DC88AE02942C8AD00DA6C55 /* AIChatView.swift in Sources */,
 				6DC88B142942C8E000DA6C55 /* Strings.swift in Sources */,
@@ -492,7 +496,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.37iOS.iChatGPT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -531,7 +535,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.37iOS.iChatGPT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -658,21 +662,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6DC88B152942C91000DA6C55 /* XCRemoteSwiftPackageReference "MarkdownUI" */ = {
+		6DAA917E2943448D004ACD01 /* XCRemoteSwiftPackageReference "MarkdownText" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/MarkdownUI";
+			repositoryURL = "https://github.com/shaps80/MarkdownText.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6DC88B162942C91000DA6C55 /* MarkdownUI */ = {
+		6DAA917F2943448D004ACD01 /* MarkdownText */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6DC88B152942C91000DA6C55 /* XCRemoteSwiftPackageReference "MarkdownUI" */;
-			productName = MarkdownUI;
+			package = 6DAA917E2943448D004ACD01 /* XCRemoteSwiftPackageReference "MarkdownText" */;
+			productName = MarkdownText;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

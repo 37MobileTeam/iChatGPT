@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import MarkdownUI
+import MarkdownText
 
 struct AIChatView: View {
     
@@ -21,12 +21,12 @@ struct AIChatView: View {
                 List {
                     ForEach(chatModel.contents, id: \.datetime) { item in
                         Section(header: Text(item.datetime)) {
-                            VStack {
-                                Markdown(item.issue)
+                            VStack(alignment: .leading) {
+                                MarkdownText(item.issue)
                                 Divider()
                                 if item.isResponse {
                                     // Text(.init(item.answer))
-                                    Markdown(item.answer ?? "")
+                                    MarkdownText(item.answer ?? "")
                                 } else {
                                     HStack {
                                         ProgressView()
@@ -43,6 +43,12 @@ struct AIChatView: View {
                 Spacer()
                 ChatInputView(searchText: $searchText, chatModel: chatModel).padding([.leading, .trailing], 12)
             }
+            .markdownHeadingStyle(.custom)
+            .markdownQuoteStyle(.custom)
+            .markdownCodeStyle(.custom)
+            .markdownInlineCodeStyle(.custom)
+            .markdownOrderedListBulletStyle(.custom)
+            .markdownImageStyle(.custom)
             .navigationTitle("OpenAI ChatGPT")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing:

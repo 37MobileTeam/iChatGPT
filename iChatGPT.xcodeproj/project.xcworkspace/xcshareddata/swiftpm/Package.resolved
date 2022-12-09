@@ -1,57 +1,39 @@
 {
   "pins" : [
     {
-      "identity" : "attributedtext",
+      "identity" : "markdowntext",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/gonzalezreal/AttributedText",
+      "location" : "https://github.com/shaps80/MarkdownText.git",
       "state" : {
-        "revision" : "0e811cb14de367bbd58a94d12259687e5ee08bea",
+        "revision" : "0dbef003e450a59283cefaed433bd267fff87e7f",
         "version" : "1.0.1"
       }
     },
     {
-      "identity" : "combine-schedulers",
+      "identity" : "swift-cmark",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/combine-schedulers",
+      "location" : "https://github.com/shaps80/swift-cmark.git",
       "state" : {
-        "revision" : "882ac01eb7ef9e36d4467eb4b1151e74fcef85ab",
-        "version" : "0.9.1"
+        "revision" : "476f7b4fcf12eba381b4aaed8987006fd8fcec9c",
+        "version" : "0.2.0"
       }
     },
     {
-      "identity" : "markdownui",
+      "identity" : "swift-markdown",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/gonzalezreal/MarkdownUI",
+      "location" : "https://github.com/shaps80/swift-markdown",
       "state" : {
-        "branch" : "main",
-        "revision" : "3c80d50712dcecf38ceb8d327969e644d5c37de6"
+        "revision" : "83188dee2dbccfa70124c56055dd0b759d3e4ec3",
+        "version" : "0.3.0"
       }
     },
     {
-      "identity" : "networkimage",
+      "identity" : "swiftuibackports",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/gonzalezreal/NetworkImage",
+      "location" : "https://github.com/shaps80/SwiftUIBackports",
       "state" : {
-        "revision" : "c97f83e771c95186af80ef6118f158852a9e54be",
-        "version" : "4.0.1"
-      }
-    },
-    {
-      "identity" : "swiftcommonmark",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/gonzalezreal/SwiftCommonMark",
-      "state" : {
-        "revision" : "ed252beaddecce28ea6363f800c773d6169011b8",
-        "version" : "1.0.0"
-      }
-    },
-    {
-      "identity" : "xctest-dynamic-overlay",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay",
-      "state" : {
-        "revision" : "5a5457a744239896e9b0b03a8e1a5069c3e7b91f",
-        "version" : "0.6.0"
+        "revision" : "d9842f24656ff7c6116dc207b60f0b6d302a5a9a",
+        "version" : "1.9.0"
       }
     }
   ],
