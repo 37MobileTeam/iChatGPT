@@ -6,7 +6,7 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 ###  一、App 介绍
 
-<img src="screenshot/01.jpeg" width="260" height:auto alt="iChatGPT app"/>
+<img src="screenshot/01.jpeg" width="800" height:auto alt="iChatGPT app"/>
 
 - 使用和原理介绍：[用 SwiftUI 实现 AI 聊天对话 app - iChatGPT](https://juejin.cn/post/7175051294808211512#heading-6)
 
