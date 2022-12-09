@@ -38,13 +38,17 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 - [Releases](https://github.com/37iOS/iChatGPT/releases)
 
-> 注：iOS 和 iPadOS 需要自行编译安装，暂时不提供安装包。
+> 注：
+> 1. iOS 和 iPadOS 需要自行编译安装，暂时不提供安装包。
+> 2. 首次打开提示：“无法打开mChatGPT.app”，因为 Apple 无法检查其是否包含恶意软件。”，请选中 app 后点击右键->打开，即可正常打开。
 
-#### 手动构建
+#### Xcode 构建
+
+- 构建依赖：Xcode14
 
 下载项目后，双击 `iChatGPT.xcodeproj` 打开项目构建。
 
-> 注：依赖 [gonzalezreal/MarkdownUI](https://github.com/gonzalezreal/MarkdownUI) 组件，保证能访问 GitHub 服务。
+> 注：依赖其它组件，需要保证能访问 GitHub 服务。
 
 
 ### 三、FAQ
@@ -67,4 +71,4 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 - [OpenAI ChatGPT](https://chat.openai.com/)
 - [OpenAI Blog](https://openai.com/blog/)
 - [A-kirami/nonebot-plugin-chatgpt](https://github.com/A-kirami/nonebot-plugin-chatgpt)
-- [gonzalezreal/MarkdownUI](https://github.com/gonzalezreal/MarkdownUI)
+- [shaps80/MarkdownText](https://github.com/shaps80/MarkdownText)
