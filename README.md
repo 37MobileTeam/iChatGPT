@@ -1,9 +1,6 @@
 # iChatGPT
 OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
-<img src="/icon.png" width="260" height:auto alt="iChatGPT app"/>
-
-
 ###  一、App 介绍
 
 <img src="screenshot/01.jpeg" width="800" height:auto alt="iChatGPT app"/>
@@ -12,7 +9,7 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 **支持功能**
 
-目前 v1.0.0，实现 ChatGPT 基本聊天功能：
+目前 v1.1.0，实现 ChatGPT 基本聊天功能：
 
 * 可以直接与 ChatGPT 对话，并且保留上下文；
 * 可以复制问题和回答内容；
@@ -27,9 +24,9 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 **TODO**
 
 * 保存对话
-* 显示个人头像
+* ~~显示个人头像~~
 * 代码没有高亮
-* 请求失败重试等等
+* ~~请求失败重试等~~
 * 更多功能，欢迎提 PR ~
 
 ### 二、安装说明
