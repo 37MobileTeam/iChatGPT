@@ -14,18 +14,25 @@ class Chatbot {
 	
 	let apUrl = "https://chat.openai.com/"
 	let sessionTokenKey = "__Secure-next-auth.session-token"
-	let timeout = 30
+	let timeout = 20
+    /// Code=-1001 "The request timed out."
+    /// Code=-1017 "cannot parse response"
+    /// Code=-1009 "The Internet connection appears to be offline."
+    let errorCodes = [-1001, -1017, -1009]
 	var sessionToken: String
 	var authorization = ""
 	var conversationId = ""
 	var parentId = ""
-	let  id = ""
+	var userAvatarUrl = ""
 	
 	init(sessionToken: String) {
 		self.sessionToken = sessionToken
+        Task {
+            await refreshSession()
+        }
 	}
 	
-	func headers() -> [String: String] {
+	private func headers() -> [String: String] {
 		return [
 			"Host": "chat.openai.com",
 			"Accept": "text/event-stream",
@@ -33,13 +40,13 @@ class Chatbot {
 			"Content-Type": "application/json",
 			"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15",
 			"X-Openai-Assistant-App-Id": "",
-			"Connection": "close",
-			"Accept-Language": "en-US,en;q=0.9",
+			"Connection": "keep-alive",
+			"Accept-Language": "zh-CN,zh-Hans;en-US,en;q=0.9",
 			"Referer": "https://chat.openai.com/chat",
 		]
 	}
 	
-	func getPayload(prompt: String) -> [String: Any] {
+    private func getPayload(prompt: String) -> [String: Any] {
 		var body = [
 			"action": "next",
 			"messages": [
@@ -57,8 +64,12 @@ class Chatbot {
 		}
 		return body
 	}
+    
+    func getUserAvatar() -> String {
+        userAvatarUrl
+    }
 	
-	func refreshSession() async {
+	func refreshSession(retry: Int = 1) async {
 		let cookies = "\(sessionTokenKey)=\(self.sessionToken)"
 		let url = self.apUrl + "api/auth/session"
 		let userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15"
@@ -70,14 +81,16 @@ class Chatbot {
 			let (data, response) = try await URLSession.shared.data(for: request)
 			let json = try JSONSerialization.jsonObject(with: data, options: [])
 			if let dictionary = json as? [String: Any] {
-				// Use the dictionary here
 				if let accessToken = dictionary["accessToken"] as? String {
 					authorization = accessToken
 				}
+                if let user = dictionary["user"] as? [String: Any],
+                    let image = user["image"] as? String {
+                    userAvatarUrl = image
+                }
 			}
 			guard let response = response as? HTTPURLResponse,
 				  let cookies = HTTPCookieStorage.shared.cookies(for: response.url!) else {
-				// handle error
 				print("刷新会话失败: <r>HTTP:\(response)")
 				return
 			}
@@ -89,12 +102,15 @@ class Chatbot {
 			}
 		}
 		catch {
+            if let err = error as NSError?, errorCodes.contains(err.code), retry > 0 {
+                return await refreshSession(retry: retry - 1)
+            }
 			print("刷新会话失败: <r>HTTP:\(error)")
 		}
 	}
 	
-	func getChatResponse(prompt: String) async -> String {
-		if  self.authorization.isEmpty {
+    func getChatResponse(prompt: String, retry: Int = 1) async -> String {
+		if self.authorization.isEmpty {
 			await refreshSession()
 		}
 		
@@ -116,6 +132,11 @@ class Chatbot {
 			if response.statusCode == 429 {
 				return "请求过多，请放慢速度"
 			}
+            
+            if response.statusCode == 401, retry > 0 {
+                // Incorrect API key provided: Bearer. or Authentication token has expired
+                return await getChatResponse(prompt: prompt, retry: retry - 1)
+            }
 			
             guard let text = String(data: data, encoding: .utf8) else {
                 return "非预期的响应内容: 内容读取失败~"
@@ -153,7 +174,10 @@ class Chatbot {
 			return parts
 		}
 		catch {
-			return "异常：\(error)"
+            if let err = error as NSError?, errorCodes.contains(err.code), retry > 0 {
+                return await getChatResponse(prompt: prompt, retry: retry - 1)
+            }
+			return "请求异常：\(error)"
 		}
 	}
 }

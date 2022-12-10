@@ -16,6 +16,8 @@ struct AIChat: Codable {
     var issue: String
     var answer: String?
     var isResponse: Bool = false
+    var userAvatarUrl: String
+    var botAvatarUrl: String = "https://chat.openai.com/apple-touch-icon.png"
 }
 
 
@@ -37,12 +39,16 @@ class AIChatModel: ObservableObject {
                 reloadChatbot()
             }
             let index = contents.count
-            var chat = AIChat(datetime: Date().currentDateString(), issue: prompt)
+            let userAvatarUrl = self.bot?.getUserAvatar() ?? ""
+            var chat = AIChat(datetime: Date().currentDateString(), issue: prompt, userAvatarUrl: userAvatarUrl)
             contents.append(chat)
             let content = await self.bot?.getChatResponse(prompt: prompt)
-            chat.answer = content
-            chat.isResponse = true
-            contents[index] = chat
+            DispatchQueue.main.async { [self] in
+                chat.answer = content
+                chat.isResponse = true
+                contents[index] = chat
+            }
+
         }
     }
     

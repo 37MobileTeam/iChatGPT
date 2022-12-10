@@ -107,6 +107,18 @@ extension CodeMarkdownStyle where Self == CustomCode {
     static var custom: Self { .init() }
 }
 
+struct CustomUnorderedBullet: UnorderedListBulletMarkdownStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(Color(UIColor.tertiaryLabel))
+            .font(.footnote)
+    }
+}
+
+extension UnorderedListBulletMarkdownStyle where Self == CustomUnorderedBullet {
+    static var custom: Self { .init() }
+}
+
 struct CustomOrderedBullet: OrderedListBulletMarkdownStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

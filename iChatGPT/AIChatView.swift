@@ -22,32 +22,42 @@ struct AIChatView: View {
                     ForEach(chatModel.contents, id: \.datetime) { item in
                         Section(header: Text(item.datetime)) {
                             VStack(alignment: .leading) {
-                                MarkdownText(item.issue)
+                                HStack(alignment: .top) {
+                                    AvatarImageView(url: item.userAvatarUrl)
+                                    MarkdownText(item.issue)
+                                        .padding(.top, 3)
+                                }
                                 Divider()
-                                if item.isResponse {
-                                    // Text(.init(item.answer))
-                                    MarkdownText(item.answer ?? "")
-                                } else {
-                                    HStack {
+                                HStack(alignment: .top) {
+                                    AvatarImageView(url: item.botAvatarUrl)
+                                    if item.isResponse {
+                                        // Text(.init(item.answer))
+                                        MarkdownText(item.answer ?? "")
+                                    } else {
                                         ProgressView()
                                         Text("请求中..")
                                             .padding(.leading, 10)
                                     }
                                 }
+                                .padding([.top, .bottom], 3)
                             }.contextMenu {
                                 ChatContextMenu(searchText: $searchText, chatModel: chatModel, item: item)
                             }
                         }
                     }
-                }.listStyle(InsetGroupedListStyle())
+                }
+                .listStyle(InsetGroupedListStyle())
+                
                 Spacer()
-                ChatInputView(searchText: $searchText, chatModel: chatModel).padding([.leading, .trailing], 12)
+                ChatInputView(searchText: $searchText, chatModel: chatModel)
+                    .padding([.leading, .trailing], 12)
             }
             .markdownHeadingStyle(.custom)
             .markdownQuoteStyle(.custom)
             .markdownCodeStyle(.custom)
             .markdownInlineCodeStyle(.custom)
             .markdownOrderedListBulletStyle(.custom)
+            .markdownUnorderedListBulletStyle(.custom)
             .markdownImageStyle(.custom)
             .navigationTitle("OpenAI ChatGPT")
             .navigationBarTitleDisplayMode(.inline)
@@ -83,6 +93,25 @@ struct AIChatView: View {
                 }
             }.frame(height: 40)
         }
+    }
+}
+
+struct AvatarImageView: View {
+    let url: String
+    
+    var body: some View {
+        Group {
+            ImageLoaderView(urlString: url) {
+                Color(.tertiarySystemGroupedBackground)
+            } image: { image in
+                image.resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 25, height: 25)
+            }
+        }
+        .cornerRadius(5)
+        .frame(width: 25, height: 25)
+        .padding(.trailing, 10)
     }
 }
 
