@@ -47,6 +47,8 @@
 /* Begin PBXFileReference section */
 		6D5C55682944317300FCF891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D5C556A2944408700FCF891 /* ImageLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderView.swift; sourceTree = "<group>"; };
+		6D7C1A202945809C008EB1CA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6D7C1A21294580A5008EB1CA /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		6DAA9181294346D8004ACD01 /* MarkdownStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownStyles.swift; sourceTree = "<group>"; };
 		6DC88ADA2942C8AD00DA6C55 /* iChatGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChatGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC88ADD2942C8AD00DA6C55 /* iChatGPTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iChatGPTApp.swift; sourceTree = "<group>"; };
@@ -97,6 +99,8 @@
 		6DC88AD12942C8AD00DA6C55 = {
 			isa = PBXGroup;
 			children = (
+				6D7C1A202945809C008EB1CA /* README.md */,
+				6D7C1A21294580A5008EB1CA /* LICENSE */,
 				6DC88ADC2942C8AD00DA6C55 /* iChatGPT */,
 				6DC88AED2942C8AE00DA6C55 /* iChatGPTTests */,
 				6DC88AF72942C8AE00DA6C55 /* iChatGPTUITests */,
