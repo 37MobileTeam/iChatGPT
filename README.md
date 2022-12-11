@@ -32,14 +32,14 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 ### 二、安装说明
 
-#### macSO 安装包下载
+#### 2.1 macSO 安装包下载
 
 - [Releases](https://github.com/37iOS/iChatGPT/releases)
 
 > 注：
 > 1. iOS 和 iPadOS 需要自行编译安装，暂时不提供安装包。
 
-#### Xcode 构建
+#### 2.2 Xcode 构建
 
 - 构建依赖：Xcode14
 
@@ -50,7 +50,7 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 ### 三、FAQ
 
-#### 登陆
+#### 3.1 登陆
 
 **目前只支持 ChatGPT Session Token 登陆**
 
@@ -73,10 +73,13 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 欢迎大家提 PR ! 或者有解决方案欢迎大家提供~
 
-#### macOS app
+#### 3.2 启动 macOS app
 
 - 问题：首次打开提示：“无法打开iChatGPT.app”，因为 Apple 无法检查其是否包含恶意软件。”
 > 解决方法：选中 app 后，点击右键 -> ”打开“，即可正常打开 iChatGPT。
+
+
+#### 3.3 More Questions
 
 - [New Issue](https://github.com/37iOS/iChatGPT/issues/new/choose)
 
