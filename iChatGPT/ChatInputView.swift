@@ -44,7 +44,7 @@ struct ChatInputView: View {
                         .padding(.trailing, 8)
                     
                     if #available(iOS 15.0, *) {
-                        serachBar.submitLabel(.search)
+                        serachBar.submitLabel(.send)
                     } else {
                         serachBar
                     }

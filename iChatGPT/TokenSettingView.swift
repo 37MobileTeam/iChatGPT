@@ -12,8 +12,12 @@ struct TokenSettingView: View {
     
     @Binding var isAddPresented: Bool
     @StateObject var chatModel: AIChatModel
-    @State private var text: String = ""
-    @State private var error: String = ""
+    @State private var sessionToken: String = ""
+    @State private var cfClearance: String = ""
+    @State private var userAgent: String = ""
+    @State private var sError: String = ""
+    @State private var cError: String = ""
+    @State private var uError: String = ""
     
     private let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     private let appSubVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
@@ -39,32 +43,77 @@ struct TokenSettingView: View {
             
             VStack(alignment: .leading) {
                 Text("Session Token:")
-                MultilineTextField("请输入 Session Token", text: $text, maxHeight: 300, onCommit: {
-                    #if DEBUG
-                    print("Final text: \(text)")
-                    #endif
-                })
-                .overlay(RoundedRectangle(cornerRadius: 5)
-                .stroke(Color.secondary))
+                let sTextField = TextField(" 请输入 session_token", text: $sessionToken)
+                    .frame(height: 40)
+                    .overlay(RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color(.tertiaryLabel)))
                 
-                if error.count > 0 && text.count == 0 {
-                    Text(error)
+                if #available(iOS 15.0, *) {
+                    sTextField.submitLabel(.done)
+                }
+                
+                if sError.count > 0 && sessionToken.isEmpty {
+                    Text(sError)
                         .foregroundColor(.red)
+                }
+                
+                Text("Cf Clearance:")
+                    .padding(.top, 15)
+                let cTextField = TextField(" 请输入 cf_clearance", text: $cfClearance)
+                    .frame(height: 40)
+                    .overlay(RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.secondary))
+                
+                if #available(iOS 15.0, *) {
+                    cTextField.submitLabel(.done)
+                }
+                
+                if cError.count > 0 && cfClearance.isEmpty {
+                    Text(cError)
+                        .foregroundColor(.red)
+                }
+                
+                Text("User Agent:")
+                    .padding(.top, 15)
+                let uTextField = TextField(" 请输入 user_agent", text: $userAgent)
+                    .frame(height: 40)
+                    .overlay(RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.secondary))
+                
+                if #available(iOS 15.0, *) {
+                    uTextField.submitLabel(.done)
+                }
+                
+                if uError.count > 0 && userAgent.isEmpty {
+                    Text(uError)
+                        .foregroundColor(.red)
+                        .padding(.bottom, 10)
                 }
             }
             .padding([.leading, .trailing], 20)
             
             Spacer()
             Button(action: {
-                if text.isEmpty {
-                    error = "Session Token 不能为空！"
-                } else {
-                    UserDefaults.standard.set(text, forKey: ChatGPTSessionTokenKey)
-                    isAddPresented = false
-                    chatModel.isRefreshSession = true
+                guard !sessionToken.isEmpty else {
+                    sError = "Session Token 不能为空！"
+                    return
                 }
+                guard !cfClearance.isEmpty else {
+                    cError = "Cf Clearance 不能为空！"
+                    return
+                }
+                guard !userAgent.isEmpty else {
+                    uError = "User Agent 不能为空！"
+                    return
+                }
+                
+                UserDefaults.standard.set(sessionToken, forKey: ChatGPTSessionTokenKey)
+                UserDefaults.standard.set(cfClearance, forKey: ChatGPTCfClearanceKey)
+                UserDefaults.standard.set(userAgent, forKey: ChatGPTUserAgentKey)
+                isAddPresented = false
+                chatModel.isRefreshSession = true
             }) {
-                Text("确认")
+                Text("保存")
                     .font(.title3)
                     .foregroundColor(.blue)
                     .padding([.leading, .trailing], 20)
@@ -83,7 +132,7 @@ struct TokenSettingView: View {
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
-                .padding(.bottom, 5)
+                .padding(.bottom, 25)
         }
     }
 }

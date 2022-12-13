@@ -8,6 +8,8 @@
 
 import Foundation
 
+let ChatGPTUserAgentKey = "ChatGPTUserAgentKey"
+let ChatGPTCfClearanceKey = "ChatGPTCfClearanceKey"
 let ChatGPTSessionTokenKey = "ChatGPTSessionTokenKey"
 
 // MARK: - Welcome1
@@ -54,7 +56,9 @@ class AIChatModel: ObservableObject {
     
     func reloadChatbot() {
         isRefreshSession = false
+        let userAgent = UserDefaults.standard.string(forKey: ChatGPTUserAgentKey) ?? ""
+        let cfClearance = UserDefaults.standard.string(forKey: ChatGPTCfClearanceKey) ?? ""
         let chatGPTSessionToken = UserDefaults.standard.string(forKey: ChatGPTSessionTokenKey) ?? ""
-        bot = Chatbot(sessionToken: chatGPTSessionToken)
+        bot = Chatbot(sessionToken: chatGPTSessionToken, cfClearance: cfClearance, userAgent: userAgent)
     }
 }

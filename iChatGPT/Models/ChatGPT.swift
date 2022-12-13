@@ -13,20 +13,25 @@ import Combine
 class Chatbot {
 	
 	let apUrl = "https://chat.openai.com/"
+    let cfClearanceKey = "cf_clearance"
 	let sessionTokenKey = "__Secure-next-auth.session-token"
 	let timeout = 20
     /// Code=-1001 "The request timed out."
     /// Code=-1017 "cannot parse response"
     /// Code=-1009 "The Internet connection appears to be offline."
     let errorCodes = [-1001, -1017, -1009]
-	var sessionToken: String
+    var sessionToken: String
+    var cfClearance: String
+	var userAgent: String?
 	var authorization = ""
 	var conversationId = ""
 	var parentId = ""
 	var userAvatarUrl = ""
 	
-	init(sessionToken: String) {
+    init(sessionToken: String, cfClearance: String, userAgent: String?) {
 		self.sessionToken = sessionToken
+        self.cfClearance = cfClearance
+        self.userAgent = userAgent
         Task {
             await refreshSession()
         }
@@ -36,9 +41,10 @@ class Chatbot {
 		return [
 			"Host": "chat.openai.com",
 			"Accept": "text/event-stream",
-			"Authorization": "Bearer \(self.authorization)",
+            "Authorization": "Bearer \(self.authorization)",
+			"Cookie": "\(cfClearanceKey)=\(self.cfClearance)",
 			"Content-Type": "application/json",
-			"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15",
+            "User-Agent": self.userAgent ?? "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15",
 			"X-Openai-Assistant-App-Id": "",
 			"Connection": "keep-alive",
 			"Accept-Language": "zh-CN,zh-Hans;en-US,en;q=0.9",
@@ -70,13 +76,14 @@ class Chatbot {
     }
 	
 	func refreshSession(retry: Int = 1) async {
-		let cookies = "\(sessionTokenKey)=\(self.sessionToken)"
+        let cookies = "\(cfClearanceKey)=\(self.cfClearance); \(sessionTokenKey)=\(self.sessionToken)"
 		let url = self.apUrl + "api/auth/session"
 		let userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "GET"
-		request.addValue(userAgent, forHTTPHeaderField: "User-Agent")
+        request.addValue(self.userAgent ?? userAgent, forHTTPHeaderField: "User-Agent")
 		request.addValue(cookies, forHTTPHeaderField: "Cookie")
+        request.httpShouldHandleCookies = true
 		do {
 			let (data, response) = try await URLSession.shared.data(for: request)
 			let json = try JSONSerialization.jsonObject(with: data, options: [])
@@ -117,7 +124,7 @@ class Chatbot {
 		let url = self.apUrl + "backend-api/conversation"
 		var request = URLRequest(url: URL(string: url)!)
 		request.httpMethod = "POST"
-		request.allHTTPHeaderFields = headers()
+        request.allHTTPHeaderFields = headers()
 		let dict = getPayload(prompt: prompt)
 		do {
 			let jsonData = try JSONSerialization.data(withJSONObject: dict, options: [])
