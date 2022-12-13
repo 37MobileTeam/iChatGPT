@@ -8,9 +8,15 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 使用和原理介绍：
 - [用 SwiftUI 实现 AI 聊天对话 app - iChatGPT](https://juejin.cn/post/7175051294808211512)
 
+**更新说明**
+
+目前 v1.1.1:
+- Cloudflare cookie support
+
+
 **支持功能**
 
-目前 v1.1.0，实现 ChatGPT 基本聊天功能：
+实现 ChatGPT 基本聊天功能：
 
 * 可以直接与 ChatGPT 对话，并且保留上下文；
 * 可以复制问题和回答内容；
@@ -59,11 +65,18 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 - 登录 [chat.openai.com/chat](https://chat.openai.com/chat)
 - 按 `F12` 打开控制台（macOS 可以用快捷键 `command + option + I` ）
 - 切换到 `Application`(应用) 选项卡，找到 `Cookies` （Safari 浏览器是 储存空间 选项卡）
-- 复制 `__Secure-next-auth.session-token` 的值，添加到 app 后确认。
+- 复制 `__Secure-next-auth.session-token` 的值：
 
 <img src="screenshot/04.jpeg" width="800" height:auto alt="screenshot/04.jpeg"/>
 
-然后在 App 右上角图标，添加 ChatGPT SessionToken 密钥就可以正常使用：
+- 复制 `cf_clearance` 值：
+<img src="screenshot/cf_clearance.png" width="800" height:auto alt="screenshot/cf_clearance.png"/>
+
+
+- 复制 `user_agent` 值：
+<img src="screenshot/user_agent.png" width="800" height:auto alt="screenshot/user_agent.png"/>
+
+然后在 App 右上角图标，添加参考密钥，点击保存就可以正常使用：
 <img src="screenshot/03.jpeg" width="800" height:auto alt="screenshot/03.jpeg"/>
 
 
