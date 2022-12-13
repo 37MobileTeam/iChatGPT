@@ -29,7 +29,11 @@ struct AIChatView: View {
                                 }
                                 Divider()
                                 HStack(alignment: .top) {
-                                    AvatarImageView(url: item.botAvatarUrl)
+                                    Image("chatgpt-icon")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                        .cornerRadius(5)
+                                        .padding(.trailing, 10)
                                     if item.isResponse {
                                         // Text(.init(item.answer))
                                         MarkdownText(item.answer ?? "")
