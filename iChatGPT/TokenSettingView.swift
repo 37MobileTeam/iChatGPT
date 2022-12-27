@@ -43,13 +43,17 @@ struct TokenSettingView: View {
             
             VStack(alignment: .leading) {
                 Text("Session Token:")
-                let sTextField = TextField(" 请输入 session_token", text: $sessionToken)
-                    .frame(height: 40)
-                    .overlay(RoundedRectangle(cornerRadius: 5)
-                    .stroke(Color(.tertiaryLabel)))
-                
                 if #available(iOS 15.0, *) {
-                    sTextField.submitLabel(.done)
+                    TextField(" 请输入 session_token", text: $sessionToken)
+                        .frame(height: 40)
+                        .overlay(RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color(.tertiaryLabel)))
+                        .submitLabel(.done)
+                } else {
+                    TextField(" 请输入 session_token", text: $sessionToken)
+                        .frame(height: 40)
+                        .overlay(RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color(.tertiaryLabel)))
                 }
                 
                 if sError.count > 0 && sessionToken.isEmpty {
@@ -59,13 +63,17 @@ struct TokenSettingView: View {
                 
                 Text("Cf Clearance:")
                     .padding(.top, 15)
-                let cTextField = TextField(" 请输入 cf_clearance", text: $cfClearance)
-                    .frame(height: 40)
-                    .overlay(RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.secondary))
-                
                 if #available(iOS 15.0, *) {
-                    cTextField.submitLabel(.done)
+                    TextField(" 请输入 cf_clearance", text: $cfClearance)
+                        .frame(height: 40)
+                        .overlay(RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.secondary))
+                        .submitLabel(.done)
+                } else {
+                    TextField(" 请输入 cf_clearance", text: $cfClearance)
+                        .frame(height: 40)
+                        .overlay(RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.secondary))
                 }
                 
                 if cError.count > 0 && cfClearance.isEmpty {
@@ -74,14 +82,18 @@ struct TokenSettingView: View {
                 }
                 
                 Text("User Agent:")
-                    .padding(.top, 15)
-                let uTextField = TextField(" 请输入 user_agent", text: $userAgent)
-                    .frame(height: 40)
-                    .overlay(RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.secondary))
-                
+                    .padding(.top, 15)                
                 if #available(iOS 15.0, *) {
-                    uTextField.submitLabel(.done)
+                    TextField(" 请输入 user_agent", text: $userAgent)
+                        .frame(height: 40)
+                        .overlay(RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.secondary))
+                        .submitLabel(.done)
+                } else {
+                    TextField(" 请输入 user_agent", text: $userAgent)
+                        .frame(height: 40)
+                        .overlay(RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.secondary))
                 }
                 
                 if uError.count > 0 && userAgent.isEmpty {
