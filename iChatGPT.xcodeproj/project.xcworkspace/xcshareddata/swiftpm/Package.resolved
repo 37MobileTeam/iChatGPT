@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "openai",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:MacPaw/OpenAI.git",
+      "state" : {
+        "revision" : "d0493cfca4986af77ac140bbf4eb30cc5ff8512f",
+        "version" : "0.0.5"
+      }
+    },
+    {
       "identity" : "swift-cmark",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/shaps80/swift-cmark.git",
