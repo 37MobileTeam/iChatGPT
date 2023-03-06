@@ -89,13 +89,12 @@ struct TokenSettingView: View {
                 .foregroundColor(.gray)
                 .padding(.bottom, 10)
             
-            Text("本项目基于37手游iOS技术团队的开源项目iChatGPT完成\n原项目地址：https://github.com/37iOS/iChatGPT\n本项目地址：https://github.com/AlphaGogoo/iChatGPT2.0")
+            
+            Text("开发者：37手游iOS技术运营团队\nGitHub 开源：https://github.com/37iOS/iChatGPT")
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 25)
-            
-//            Text("开发者：37手游iOS技术运营团队\nGitHub 开源：https://github.com/37iOS/iChatGPT")
                 
         }
     }
