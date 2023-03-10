@@ -45,6 +45,11 @@ struct ChatContextMenu: View {
                     chatModel.contents.remove(at: index)
                 }
             }.disabled(isWait.count > 0)
+            
+
+            CreateMenuItem(text: "删除全部", imgName: "trash", isDestructive: true) {
+                chatModel.contents.removeAll()
+            }.disabled(isWait.count > 0)
         }
     }
 
