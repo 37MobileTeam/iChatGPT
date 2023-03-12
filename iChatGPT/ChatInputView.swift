@@ -25,8 +25,8 @@ struct ChatInputView: View {
                 #endif
                     .cornerRadius(10)
                     .frame(height: 40)
-                
                 HStack {
+                    
                     if #available(iOS 15.0, *) {
                         Image(systemName: "message.and.waveform")
                             .foregroundColor(.gray)
@@ -95,9 +95,3 @@ struct ChatInputView: View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
-
-//struct ChatInputView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ChatInputView(searchText: <#Binding<String>#>, chatModel: <#AIChatModel#>)
-//    }
-//}

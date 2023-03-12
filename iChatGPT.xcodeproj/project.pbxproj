@@ -25,6 +25,7 @@
 		6DC88B142942C8E000DA6C55 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88B132942C8E000DA6C55 /* Strings.swift */; };
 		6DC88B192942D0B700DA6C55 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88B182942D0B700DA6C55 /* Dates.swift */; };
 		6DC88B1B2942E84A00DA6C55 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88B1A2942E84A00DA6C55 /* MultilineTextField.swift */; };
+		8D204CCE29B5FB7D00AD3056 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 8D204CCD29B5FB7D00AD3056 /* OpenAI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D204CCE29B5FB7D00AD3056 /* OpenAI in Frameworks */,
 				6DAA91802943448D004ACD01 /* MarkdownText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +201,7 @@
 			name = iChatGPT;
 			packageProductDependencies = (
 				6DAA917F2943448D004ACD01 /* MarkdownText */,
+				8D204CCD29B5FB7D00AD3056 /* OpenAI */,
 			);
 			productName = iChatGPT;
 			productReference = 6DC88ADA2942C8AD00DA6C55 /* iChatGPT.app */;
@@ -276,6 +279,7 @@
 			mainGroup = 6DC88AD12942C8AD00DA6C55;
 			packageReferences = (
 				6DAA917E2943448D004ACD01 /* XCRemoteSwiftPackageReference "MarkdownText" */,
+				8D204CCC29B5FB7D00AD3056 /* XCRemoteSwiftPackageReference "OpenAI" */,
 			);
 			productRefGroup = 6DC88ADB2942C8AD00DA6C55 /* Products */;
 			projectDirPath = "";
@@ -492,7 +496,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2022.12.27;
+				CURRENT_PROJECT_VERSION = 2023.3.6;
 				DEVELOPMENT_ASSET_PATHS = "\"iChatGPT/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -510,7 +514,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.37iOS.iChatGPT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -532,7 +536,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2022.12.27;
+				CURRENT_PROJECT_VERSION = 2023.3.6;
 				DEVELOPMENT_ASSET_PATHS = "\"iChatGPT/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -550,7 +554,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.37iOS.iChatGPT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -685,6 +689,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		8D204CCC29B5FB7D00AD3056 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:MacPaw/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -692,6 +704,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6DAA917E2943448D004ACD01 /* XCRemoteSwiftPackageReference "MarkdownText" */;
 			productName = MarkdownText;
+		};
+		8D204CCD29B5FB7D00AD3056 /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D204CCC29B5FB7D00AD3056 /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

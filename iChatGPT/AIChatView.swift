@@ -35,7 +35,6 @@ struct AIChatView: View {
                                         .cornerRadius(5)
                                         .padding(.trailing, 10)
                                     if item.isResponse {
-                                        // Text(.init(item.answer))
                                         MarkdownText(item.answer ?? "")
                                     } else {
                                         ProgressView()

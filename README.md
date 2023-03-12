@@ -10,7 +10,7 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 **更新说明**
 
-目前 v1.1.1:
+目前 v2.0:
 - Cloudflare cookie support
 
 
@@ -58,31 +58,8 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 #### 3.1 登陆
 
-**目前只支持 ChatGPT Session Token 登陆**
-
-获取 SessionToken 的方法很多，比如抓包，而浏览器方法最简单：
-
-- 登录 [chat.openai.com/chat](https://chat.openai.com/chat)
-- 按 `F12` 打开控制台（macOS 可以用快捷键 `command + option + I` ）
-- 切换到 `Application`(应用) 选项卡，找到 `Cookies` （Safari 浏览器是 储存空间 选项卡）
-- 复制 `__Secure-next-auth.session-token` 的值：
-
-<img src="screenshot/04.jpeg" width="800" height:auto alt="screenshot/04.jpeg"/>
-
-- 复制 `cf_clearance` 值：
-<img src="screenshot/cf_clearance.png" width="800" height:auto alt="screenshot/cf_clearance.png"/>
-
-
-- 复制 `user_agent` 值：
-<img src="screenshot/user_agent.png" width="800" height:auto alt="screenshot/user_agent.png"/>
-
-然后在 App 右上角图标，添加参考密钥，点击保存就可以正常使用：
-<img src="screenshot/03.jpeg" width="800" height:auto alt="screenshot/03.jpeg"/>
-
-
-**ChatGPT 账号和密码登陆**
-
-账号和密码登陆方式也有临时解决方案  [rawandahmad698/PyChatGPT](https://github.com/rawandahmad698/PyChatGPT/blob/955883864e35d9aadcfd9c1ba9f6f4e7ae845672/src/pychatgpt/classes/openai.py#L73)，但测试发现异常网络需要验证码，所以暂未实现账号和密码登陆。
+**目前支持使用openai key来进行认证，无需其他方式**
+<img src="screenshot/03.png" width="800" height:auto alt="screenshot/03.png"/>
 
 欢迎大家提 PR ! 或者有解决方案欢迎大家提供~
 
