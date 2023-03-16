@@ -20,6 +20,21 @@ struct TokenSettingView: View {
     private let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     private let appSubVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
     
+    
+    
+    func lastOpenAIKey() -> String?{
+        
+        guard let inputString = UserDefaults.standard.string(forKey: ChatGPTOpenAIKey) else { return nil }
+        
+        let firstThree = inputString.prefix(3)
+        let lastThree = inputString.suffix(3)
+        let middle = String(repeating: "*", count: inputString.count - 6)
+        let outputString = "\(firstThree)\(middle)\(lastThree)"
+        
+        return outputString
+    }
+    
+    
     var body: some View {
         VStack {
             HStack {
@@ -40,6 +55,14 @@ struct TokenSettingView: View {
             Spacer()
             
             VStack(alignment: .leading) {
+                
+                if let lastOpenAIKey = lastOpenAIKey() {
+                    Text("Last OpenAI Key:")
+                        .padding(.top, 15)
+                    Text("\(lastOpenAIKey)")
+                        .font(.system(size: 12))
+                }
+                
                 Text("OpenAI Key:")
                     .padding(.top, 15)
                 if #available(iOS 15.0, *) {
