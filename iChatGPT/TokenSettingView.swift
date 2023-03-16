@@ -94,8 +94,12 @@ struct TokenSettingView: View {
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
+                .padding(.bottom, 10)
+            Text("Contributors：[@iHTCboy](https://github.com/iHTCboy) | [@AlphaGogoo (BWQ)](https://github.com/AlphaGogoo)")
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
                 .padding(.bottom, 25)
-                
         }
     }
 }

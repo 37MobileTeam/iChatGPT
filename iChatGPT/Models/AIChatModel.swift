@@ -26,8 +26,10 @@ class AIChatModel: ObservableObject {
         loadChatbot()
     }
     
-    
     func getChatResponse(prompt: String){
+        if isRefreshSession {
+            loadChatbot()
+        }
         let index = contents.count
         let userAvatarUrl = self.bot?.getUserAvatar() ?? ""
         var chat = AIChat(datetime: Date().currentDateString(), issue: prompt, userAvatarUrl: userAvatarUrl)

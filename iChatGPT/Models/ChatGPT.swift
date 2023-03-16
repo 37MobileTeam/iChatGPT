@@ -11,7 +11,7 @@ import Combine
 import OpenAI
 
 class Chatbot {
-	var userAvatarUrl = ""
+	var userAvatarUrl = "https://raw.githubusercontent.com/37iOS/iChatGPT/main/icon.png"
     var openAIKey = ""
     var openAI:OpenAI
     var answer = ""

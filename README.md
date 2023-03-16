@@ -11,7 +11,7 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 **更新说明**
 
 目前 v2.0:
-- Cloudflare cookie support
+- support OpenAI API key
 
 
 **支持功能**
@@ -74,15 +74,22 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 - [New Issue](https://github.com/37iOS/iChatGPT/issues/new/choose)
 
 
-### 四、效果示例
+### 四、Contributors 
+
+* [@iHTCboy](https://github.com/iHTCboy) 
+* [@AlphaGogoo (BWQ)](https://github.com/AlphaGogoo)
+
+
+### 五、效果示例
 
 <img src="screenshot/02.jpeg" width="800" height:auto alt="screenshot/02.jpeg"/>
+<img src="screenshot/05.jpeg" width="800" height:auto alt="screenshot/03.jpeg"/>
 <img src="screenshot/05.jpeg" width="800" height:auto alt="screenshot/05.jpeg"/>
 <img src="screenshot/06.jpeg" width="800" height:auto alt="screenshot/06.jpeg"/>
 <img src="screenshot/07.jpeg" width="800" height:auto alt="screenshot/07.jpeg"/>
 
 
-### 五、特别鸣谢
+### 六、特别鸣谢
 
 - [OpenAI ChatGPT](https://chat.openai.com/)
 - [OpenAI Blog](https://openai.com/blog/)
