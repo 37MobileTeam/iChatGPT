@@ -12,6 +12,7 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 目前 v2.0:
 - support OpenAI API key
+- base GPT3.5 Turbo
 
 
 **支持功能**
