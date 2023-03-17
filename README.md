@@ -10,10 +10,11 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 **更新说明**
 
-目前 v2.0:
+最新版本 v2.0:
 - support OpenAI API key
 - base GPT3.5 Turbo
 
+> 注意：需要填写自己的 OpenAI API key，app 不提供 key！ 
 
 **支持功能**
 
@@ -33,26 +34,46 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 * 保存对话
 * ~~显示个人头像~~
-* 代码没有高亮
 * ~~请求失败重试等~~
+* 代码没有高亮
+* 支持多语言，如英文
+* 悬浮窗模式
+* 保存 pdf 文件
+* 自由的选择和复制文本
 * 更多功能，欢迎提 PR ~
 
 ### 二、安装说明
 
-#### 2.1 macSO 安装包下载
+#### 2.1 iOS / iPadOS / Mac Apple Silicon
+
+- iOS 14.0+
+- iPadOS 14.0+
+- macOS 11.0+（Mac Apple Silicon M1/M2+）
+
+
+TestFlight 下载地址：[https://testflight.apple.com/join/GR4BOt2M](https://testflight.apple.com/join/GR4BOt2M)
+
+> 注：
+> 1. TestFlight 名额有限，先下先得！
+> 2. 如无名额，iOS 和 iPadOS 需要自行编译安装。
+
+
+#### 2.2 macSO 安装包下载
+
+- macOS 11.0+
+- Mac Apple Silicon M1/M2+
+- Mac Intel x86_64
 
 - [Releases](https://github.com/37iOS/iChatGPT/releases)
 
-> 注：
-> 1. iOS 和 iPadOS 需要自行编译安装，暂时不提供安装包。
 
-#### 2.2 Xcode 构建
+#### 2.3 Xcode 构建
 
 - 构建依赖：Xcode14
 
 下载项目后，双击 `iChatGPT.xcodeproj` 打开项目构建。
 
-> 注：依赖其它组件，需要保证能访问 GitHub 服务。
+> 注：依赖其它共享组件，需要保证能访问 GitHub 服务。
 
 
 ### 三、FAQ
@@ -79,6 +100,7 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 * [@iHTCboy](https://github.com/iHTCboy) 
 * [@AlphaGogoo (BWQ)](https://github.com/AlphaGogoo)
+* [@RbBtSn0w (Snow Wu)](https://github.com/RbBtSn0w)
 
 
 ### 五、效果示例
