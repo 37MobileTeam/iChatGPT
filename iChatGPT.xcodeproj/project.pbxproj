@@ -496,7 +496,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023.3.16;
+				CURRENT_PROJECT_VERSION = 2023.3.19;
 				DEVELOPMENT_ASSET_PATHS = "\"iChatGPT/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
@@ -538,7 +538,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023.3.16;
+				CURRENT_PROJECT_VERSION = 2023.3.19;
 				DEVELOPMENT_ASSET_PATHS = "\"iChatGPT/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";

@@ -8,9 +8,13 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 使用和原理介绍：
 - [用 SwiftUI 实现 AI 聊天对话 app - iChatGPT](https://juejin.cn/post/7175051294808211512)
 
-**更新说明**
+#### 更新说明
 
-最新版本 v2.0:
+最新版本 v2.1:
+- support GPT-4 Model
+
+
+v2.0:
 - support OpenAI API key
 - base GPT3.5 Turbo
 
@@ -32,9 +36,9 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 **TODO**
 
-* 保存对话
 * ~~显示个人头像~~
 * ~~请求失败重试等~~
+* 保存对话
 * 代码没有高亮
 * 支持多语言，如英文
 * 悬浮窗模式
@@ -64,7 +68,7 @@ TestFlight 下载地址：[https://testflight.apple.com/join/GR4BOt2M](https://t
 - Mac Apple Silicon M1/M2+
 - Mac Intel x86_64
 
-- [Releases](https://github.com/37iOS/iChatGPT/releases)
+- Mac 下载：[Releases](https://github.com/37iOS/iChatGPT/releases)
 
 
 #### 2.3 Xcode 构建
@@ -114,7 +118,10 @@ TestFlight 下载地址：[https://testflight.apple.com/join/GR4BOt2M](https://t
 
 ### 六、特别鸣谢
 
+- [Chat completion - OpenAI API](https://platform.openai.com/docs/guides/chat)
+- [Models - OpenAI API](https://platform.openai.com/docs/models/moderation)
 - [OpenAI ChatGPT](https://chat.openai.com/)
 - [OpenAI Blog](https://openai.com/blog/)
 - [A-kirami/nonebot-plugin-chatgpt](https://github.com/A-kirami/nonebot-plugin-chatgpt)
 - [shaps80/MarkdownText](https://github.com/shaps80/MarkdownText)
+- [MacPaw/OpenAI](https://github.com/MacPaw/OpenAI)

@@ -13,16 +13,16 @@ struct TokenSettingView: View {
     @Binding var isAddPresented: Bool
     @StateObject var chatModel: AIChatModel
     
-
+    @State private var modelName: String = UserDefaults.standard.string(forKey: ChatGPTModelName) ?? "gpt-3.5-turbo"
+    @State private var modelViewIsExpanded = false
     @State private var OpenAIKey: String = ""   //直接使用openai的key进行请求发送
     @State private var kError: String = "" // 不能为空
     
     private let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     private let appSubVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+    private let modelLists: [String] = ["gpt-3.5-turbo", "gpt-4"]
     
-    
-    
-    func lastOpenAIKey() -> String?{
+    func lastOpenAIKey() -> String? {
         
         guard let inputString = UserDefaults.standard.string(forKey: ChatGPTOpenAIKey) else { return nil }
         
@@ -55,12 +55,51 @@ struct TokenSettingView: View {
             Spacer()
             
             VStack(alignment: .leading) {
+                HStack {
+                    Text("API Model：")
+                    Button(action: {
+                        modelViewIsExpanded.toggle()
+                    }) {
+                        HStack {
+                            Image(systemName: "slider.horizontal.3").imageScale(.medium)
+                            Text(modelName)
+                        }.frame(height: 30)
+                    }
+                    
+                    Spacer()
+                }
                 
-                if let lastOpenAIKey = lastOpenAIKey() {
-                    Text("Last OpenAI Key:")
-                        .padding(.top, 15)
-                    Text("\(lastOpenAIKey)")
-                        .font(.system(size: 12))
+                if modelViewIsExpanded {
+                    Divider()
+                    ScrollView {
+                        ForEach(0..<modelLists.count, id: \.self){ index in
+                            HStack{
+                                let model = modelLists[index]
+                                if model == modelName {
+                                    Text(model).padding(.horizontal).padding(.top, 10).foregroundColor(.blue)
+                                } else {
+                                    Text(model).padding(.horizontal).padding(.top, 10)
+                                }
+                                Spacer()
+                                if model == modelName {
+                                    Image(systemName: "checkmark").padding(.horizontal).padding(.top, 10).foregroundColor(.blue)
+                                }
+                            }
+                            .background(Color(UIColor.systemBackground))
+                            .onTapGesture {
+                                let model = modelLists[index]
+                                UserDefaults.standard.set(model, forKey: ChatGPTModelName)
+                                withAnimation{
+                                    modelName = model
+                                    modelViewIsExpanded = false
+                                }
+                            }
+                        }
+                    }
+                    .background(Color(UIColor.systemBackground))
+                    .frame(maxHeight: 100)
+                    
+                    Divider()
                 }
                 
                 Text("OpenAI Key:")
@@ -82,6 +121,13 @@ struct TokenSettingView: View {
                     Text(kError)
                         .foregroundColor(.red)
                         .padding(.bottom, 10)
+                }
+                
+                if let lastOpenAIKey = lastOpenAIKey() {
+                    Text("Last OpenAI Key:")
+                        .padding(.top, 15)
+                    Text("\(lastOpenAIKey)")
+                        .font(.system(size: 12))
                 }
             }
             .padding([.leading, .trailing], 20)
@@ -107,22 +153,24 @@ struct TokenSettingView: View {
             
             Spacer()
             
-            Text("v \(appVersion ?? "") (\(appSubVersion ?? ""))")
-                .font(.footnote)
-                .foregroundColor(.gray)
-                .padding(.bottom, 10)
-            
-            
-            Text("开发者：37手游iOS技术运营团队\nGitHub 开源：https://github.com/37iOS/iChatGPT")
-                .font(.footnote)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.bottom, 10)
-            Text("Contributors：[@iHTCboy](https://github.com/iHTCboy) | [@AlphaGogoo (BWQ)](https://github.com/AlphaGogoo)")
-                .font(.footnote)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.bottom, 25)
+            Group {
+                Text("v \(appVersion ?? "") (\(appSubVersion ?? ""))")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .padding(.bottom, 10)
+                
+                Text("开发者：37手游iOS技术运营团队\nGitHub 开源：https://github.com/37iOS/iChatGPT")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 10)
+                
+                Text("Contributors：[@iHTCboy](https://github.com/iHTCboy) | [@AlphaGogoo](https://github.com/AlphaGogoo) | [@RbBtSn0w](https://github.com/RbBtSn0w)")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 25)
+            }
         }
     }
 }

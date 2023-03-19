@@ -3,6 +3,7 @@ import Foundation
 import OpenAI
 
 let ChatGPTOpenAIKey = "ChatGPTOpenAIKey"
+let ChatGPTModelName = "ChatGPTModelName"
 
 // MARK: - Welcome1
 struct AIChat: Codable {
@@ -12,6 +13,8 @@ struct AIChat: Codable {
     var isResponse: Bool = false
     var userAvatarUrl: String
     var botAvatarUrl: String = "https://chat.openai.com/apple-touch-icon.png"
+    var model: String
+    
 }
 
 
@@ -32,7 +35,8 @@ class AIChatModel: ObservableObject {
         }
         let index = contents.count
         let userAvatarUrl = self.bot?.getUserAvatar() ?? ""
-        var chat = AIChat(datetime: Date().currentDateString(), issue: prompt, userAvatarUrl: userAvatarUrl)
+        let model = UserDefaults.standard.string(forKey: ChatGPTModelName) ?? "gpt-3.5-turbo"
+        var chat = AIChat(datetime: Date().currentDateString(), issue: prompt, userAvatarUrl: userAvatarUrl, model: model)
         contents.append(chat)
 
         self.bot?.getChatGPTAnswer(prompts: contents){answer in
