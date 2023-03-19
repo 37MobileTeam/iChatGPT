@@ -159,7 +159,7 @@ struct TokenSettingView: View {
                     .foregroundColor(.gray)
                     .padding(.bottom, 10)
                 
-                Text("Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT".localized())
+                Text(.init("Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT".localized()))
                     .font(.footnote)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
