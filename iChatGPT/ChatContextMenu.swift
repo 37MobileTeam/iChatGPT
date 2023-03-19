@@ -16,30 +16,30 @@ struct ChatContextMenu: View {
 //
     var body: some View {
         VStack {
-            CreateMenuItem(text: "重新提问", imgName: "arrow.up.message") {
+            CreateMenuItem(text: "Re-question".localized(), imgName: "arrow.up.message") {
                 chatModel.getChatResponse(prompt: item.issue)
             }
-            CreateMenuItem(text: "复制问题", imgName: "doc.on.doc") {
+            CreateMenuItem(text: "Copy Question".localized(), imgName: "doc.on.doc") {
                 item.issue.copyToClipboard()
             }
 
-            CreateMenuItem(text: "复制答案", imgName: "doc.on.doc") {
+            CreateMenuItem(text: "Copy Answer".localized(), imgName: "doc.on.doc") {
                 item.answer!.copyToClipboard()
             }
             .disabled(item.answer == nil)
 
-            CreateMenuItem(text: "复制问题和答案", imgName: "doc.on.doc.fill") {
+            CreateMenuItem(text: "Copy Question and Answer".localized(), imgName: "doc.on.doc.fill") {
                 "\(item.issue)\n-----------\n\(item.answer ?? "")".copyToClipboard()
             }
             .disabled(item.answer == nil)
 
-            CreateMenuItem(text: "复制问题到输入框", imgName: "keyboard.badge.ellipsis") {
+            CreateMenuItem(text: "Copy Question to Inputbox".localized(), imgName: "keyboard.badge.ellipsis") {
                 searchText = item.issue
             }
 
             // remove item
             let isWait = chatModel.contents.filter({ $0.isResponse == false })
-            CreateMenuItem(text: "删除问题", imgName: "trash", isDestructive: true) {
+            CreateMenuItem(text: "Delete Question".localized(), imgName: "trash", isDestructive: true) {
                 if let index = chatModel.contents.firstIndex(where: { $0.datetime == item.datetime })
                 {
                     chatModel.contents.remove(at: index)
@@ -47,7 +47,7 @@ struct ChatContextMenu: View {
             }.disabled(isWait.count > 0)
             
 
-            CreateMenuItem(text: "删除全部", imgName: "trash", isDestructive: true) {
+            CreateMenuItem(text: "Delete All".localized(), imgName: "trash", isDestructive: true) {
                 chatModel.contents.removeAll()
             }.disabled(isWait.count > 0)
         }

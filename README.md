@@ -11,7 +11,9 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 #### 更新说明
 
 最新版本 v2.1:
-- support GPT-4 Model
+- support GPT-4 Model（支持 GPT-4 模型）
+- support English language（支持英文语言）
+- display configured API Key（显示已配置的 API Key）
 
 
 v2.0:
@@ -38,9 +40,9 @@ v2.0:
 
 * ~~显示个人头像~~
 * ~~请求失败重试等~~
+* ~~支持多语言，如英文~~
 * 保存对话
 * 代码没有高亮
-* 支持多语言，如英文
 * 悬浮窗模式
 * 保存 pdf 文件
 * 自由的选择和复制文本

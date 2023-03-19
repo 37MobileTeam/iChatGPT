@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  iChatGPT
+
+  Created by HTC on 2023/3/19.
+  Copyright © 2023 37 Mobile Games. All rights reserved.
+*/
+
+"Loading.." = "请求中..";
+"Just ask.." = "随便问..";
+"Re-question" = "重新提问";
+"Copy Question" = "复制问题";
+"Copy Answer" = "复制答案";
+"Copy Question and Answer" = "复制问题和答案";
+"Copy Question to Inputbox" = "复制问题到输入框";
+"Delete Question" = "删除问题";
+"Delete All" = "删除全部";
+"Settings" = "设置";
+"Please enter OpenAI Key" = " 请输入 OpenAI Key";
+"OpenAI Key cannot be empty" = "OpenAI Key 不能为空";
+"Save Key" = "保存 Key";
+"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "开发者：37手游iOS技术运营团队\nGitHub 开源：https://github.com/37iOS/iChatGPT";

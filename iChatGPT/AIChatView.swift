@@ -38,7 +38,7 @@ struct AIChatView: View {
                                         MarkdownText(item.answer ?? "")
                                     } else {
                                         ProgressView()
-                                        Text("请求中..")
+                                        Text("Loading..".localized())
                                             .padding(.leading, 10)
                                     }
                                 }

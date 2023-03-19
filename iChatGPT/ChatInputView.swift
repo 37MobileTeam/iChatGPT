@@ -39,7 +39,7 @@ struct ChatInputView: View {
                             .padding(.trailing, 5)
                     }
                     
-                    let serachBar = TextField("随便问..", text: $searchText,  onEditingChanged: changedSearch, onCommit: fetchSearch)
+                    let serachBar = TextField("Just ask..".localized(), text: $searchText,  onEditingChanged: changedSearch, onCommit: fetchSearch)
                         .textFieldStyle(.plain)
                         .padding(.trailing, 8)
                     

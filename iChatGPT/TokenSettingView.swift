@@ -40,7 +40,7 @@ struct TokenSettingView: View {
             HStack {
                 Spacer().frame(width: 50)
                 Spacer()
-                Text("设置访问密钥").font(.headline).fontWeight(.bold).padding([.top, .leading], 12)
+                Text("Settings".localized()).font(.headline).fontWeight(.bold).padding([.top, .leading], 12)
                 Spacer()
                 Button {
                     isAddPresented = false
@@ -105,13 +105,13 @@ struct TokenSettingView: View {
                 Text("OpenAI Key:")
                     .padding(.top, 15)
                 if #available(iOS 15.0, *) {
-                    TextField(" 请输入 OpenAI Key", text: $OpenAIKey)
+                    TextField("Please enter OpenAI Key".localized(), text: $OpenAIKey)
                         .frame(height: 40)
                         .overlay(RoundedRectangle(cornerRadius: 5)
                         .stroke(Color.secondary))
                         .submitLabel(.done)
                 } else {
-                    TextField(" 请输入 OpenAI Key", text: $OpenAIKey)
+                    TextField("Please enter OpenAI Key".localized(), text: $OpenAIKey)
                         .frame(height: 40)
                         .overlay(RoundedRectangle(cornerRadius: 5)
                         .stroke(Color.secondary))
@@ -135,7 +135,7 @@ struct TokenSettingView: View {
             Spacer()
             Button(action: {
                 guard !OpenAIKey.isEmpty else{
-                    kError = "OpenAI Key 不能为空"
+                    kError = "OpenAI Key cannot be empty".localized()
                     return
                 }
                 
@@ -143,7 +143,7 @@ struct TokenSettingView: View {
                 isAddPresented = false
                 chatModel.isRefreshSession = true
             }) {
-                Text("保存")
+                Text("Save Key".localized())
                     .font(.title3)
                     .foregroundColor(.blue)
                     .padding([.leading, .trailing], 20)
@@ -159,7 +159,7 @@ struct TokenSettingView: View {
                     .foregroundColor(.gray)
                     .padding(.bottom, 10)
                 
-                Text("开发者：37手游iOS技术运营团队\nGitHub 开源：https://github.com/37iOS/iChatGPT")
+                Text("Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT".localized())
                     .font(.footnote)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)

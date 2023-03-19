@@ -26,4 +26,8 @@ extension String {
         #endif
     }
     
+    public func localized() -> String {
+        let string = NSLocalizedString(self, comment: self)
+        return string
+    }
 }
