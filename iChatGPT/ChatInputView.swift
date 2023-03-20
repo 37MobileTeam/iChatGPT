@@ -39,15 +39,9 @@ struct ChatInputView: View {
                             .padding(.trailing, 5)
                     }
                     
-                    let serachBar = TextField("Just ask..".localized(), text: $searchText,  onEditingChanged: changedSearch, onCommit: fetchSearch)
+                    textView()
                         .textFieldStyle(.plain)
                         .padding(.trailing, 8)
-                    
-                    if #available(iOS 15.0, *) {
-                        serachBar.submitLabel(.send)
-                    } else {
-                        serachBar
-                    }
                     
                     if searchText.count > 0 {
                         Button(action: clearSearch) {
@@ -68,6 +62,17 @@ struct ChatInputView: View {
             }
         }
         .padding(.bottom, 10)
+    }
+    
+    @ViewBuilder private func textView() -> some View {
+        if #available(iOS 15.0, *) {
+            TextField("Just ask..".localized(), text: $searchText, onEditingChanged: changedSearch(isEditing:))
+                .onSubmit(fetchSearch)
+                .submitLabel(.send)
+        } else {
+            // Fallback on earlier versions
+            TextField("Just ask..".localized(), text: $searchText,  onEditingChanged: changedSearch, onCommit: fetchSearch)
+        }
     }
     
     func changedSearch(isEditing: Bool) {
