@@ -27,6 +27,8 @@
 		6DC88B192942D0B700DA6C55 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88B182942D0B700DA6C55 /* Dates.swift */; };
 		6DC88B1B2942E84A00DA6C55 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC88B1A2942E84A00DA6C55 /* MultilineTextField.swift */; };
 		8D204CCE29B5FB7D00AD3056 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 8D204CCD29B5FB7D00AD3056 /* OpenAI */; };
+		D0AB108129C7D09D00FEA496 /* ScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AB107F29C7D09D00FEA496 /* ScrollableView.swift */; };
+		D0AB108229C7D09D00FEA496 /* ViewHeightKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AB108029C7D09D00FEA496 /* ViewHeightKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		6DC88B132942C8E000DA6C55 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		6DC88B182942D0B700DA6C55 /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
 		6DC88B1A2942E84A00DA6C55 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		D0AB107F29C7D09D00FEA496 /* ScrollableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableView.swift; sourceTree = "<group>"; };
+		D0AB108029C7D09D00FEA496 /* ViewHeightKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewHeightKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,8 @@
 				6DC88B072942C8D200DA6C55 /* ChatInputView.swift */,
 				6DC88B092942C8D200DA6C55 /* ChatContextMenu.swift */,
 				6DC88B082942C8D200DA6C55 /* TokenSettingView.swift */,
+				D0AB107F29C7D09D00FEA496 /* ScrollableView.swift */,
+				D0AB108029C7D09D00FEA496 /* ViewHeightKey.swift */,
 				6DC88B0D2942C8DB00DA6C55 /* Models */,
 				6DC88B122942C8E000DA6C55 /* Extensions */,
 				6DC88AE12942C8AE00DA6C55 /* Assets.xcassets */,
@@ -335,10 +341,12 @@
 				6DC88B0A2942C8D200DA6C55 /* ChatInputView.swift in Sources */,
 				6DC88B112942C8DC00DA6C55 /* ChatGPT.swift in Sources */,
 				6DC88B1B2942E84A00DA6C55 /* MultilineTextField.swift in Sources */,
+				D0AB108229C7D09D00FEA496 /* ViewHeightKey.swift in Sources */,
 				6DC88B102942C8DC00DA6C55 /* AIChatModel.swift in Sources */,
 				6DC88B192942D0B700DA6C55 /* Dates.swift in Sources */,
 				6D5C556B2944408700FCF891 /* ImageLoaderView.swift in Sources */,
 				6DC88ADE2942C8AD00DA6C55 /* iChatGPTApp.swift in Sources */,
+				D0AB108129C7D09D00FEA496 /* ScrollableView.swift in Sources */,
 				6DC88B0B2942C8D200DA6C55 /* TokenSettingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
