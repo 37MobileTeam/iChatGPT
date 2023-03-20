@@ -726,7 +726,7 @@
 		};
 		8D204CCC29B5FB7D00AD3056 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:MacPaw/OpenAI.git";
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.0.5;
