@@ -76,6 +76,7 @@
 		6DC88B1A2942E84A00DA6C55 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		D0AB107F29C7D09D00FEA496 /* ScrollableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableView.swift; sourceTree = "<group>"; };
 		D0AB108029C7D09D00FEA496 /* ViewHeightKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewHeightKey.swift; sourceTree = "<group>"; };
+		D0AB108429C7DD4300FEA496 /* Scroll-Stick.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Scroll-Stick.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +138,7 @@
 				6DC88B082942C8D200DA6C55 /* TokenSettingView.swift */,
 				D0AB107F29C7D09D00FEA496 /* ScrollableView.swift */,
 				D0AB108029C7D09D00FEA496 /* ViewHeightKey.swift */,
+				D0AB108329C7DCB800FEA496 /* Document */,
 				6DC88B0D2942C8DB00DA6C55 /* Models */,
 				6DC88B122942C8E000DA6C55 /* Extensions */,
 				6DC88AE12942C8AE00DA6C55 /* Assets.xcassets */,
@@ -191,6 +193,14 @@
 				6D5C556A2944408700FCF891 /* ImageLoaderView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D0AB108329C7DCB800FEA496 /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				D0AB108429C7DD4300FEA496 /* Scroll-Stick.gif */,
+			);
+			path = Document;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
