@@ -14,42 +14,19 @@ struct AIChatView: View {
     @State private var isAddPresented: Bool = false
     @State private var searchText = ""
     @StateObject private var chatModel = AIChatModel(contents: [])
+    @State private var messageAnimate = false
     
     var body: some View {
         NavigationView {
             Group {
-                List {
-                    ForEach(chatModel.contents, id: \.datetime) { item in
-                        Section(header: Text(item.datetime)) {
-                            VStack(alignment: .leading) {
-                                HStack(alignment: .top) {
-                                    AvatarImageView(url: item.userAvatarUrl)
-                                    MarkdownText(item.issue)
-                                        .padding(.top, 3)
-                                }
-                                Divider()
-                                HStack(alignment: .top) {
-                                    Image("chatgpt-icon")
-                                        .resizable()
-                                        .frame(width: 25, height: 25)
-                                        .cornerRadius(5)
-                                        .padding(.trailing, 10)
-                                    if item.isResponse {
-                                        MarkdownText(item.answer ?? "")
-                                    } else {
-                                        ProgressView()
-                                        Text("Loading..".localized())
-                                            .padding(.leading, 10)
-                                    }
-                                }
-                                .padding([.top, .bottom], 3)
-                            }.contextMenu {
-                                ChatContextMenu(searchText: $searchText, chatModel: chatModel, item: item)
-                            }
-                        }
+                ScrollableView {
+                    LazyVStack {
+                        ForEach(chatModel.contents, id: \.datetime, content: row(for:))
                     }
                 }
-                .listStyle(InsetGroupedListStyle())
+                .padding(.bottom, 6)
+                .background(AIColor.systemGroupedBackground)
+                .onReceive(chatModel.newMessageSubject, perform: messageSend(_:))
                 
                 Spacer()
                 ChatInputView(searchText: $searchText, chatModel: chatModel)
@@ -95,6 +72,65 @@ struct AIChatView: View {
                     Image(systemName: "key.icloud").imageScale(.large)
                 }
             }.frame(height: 40)
+        }
+    }
+    
+    @ViewBuilder func row(for item: AIChat) -> some View {
+        VStack {
+            HStack {
+                Text(item.datetime)
+                Spacer(minLength: 0)
+            }
+            
+            Rectangle().frame(height: 1).opacity(0.4)
+            
+            VStack(alignment: .leading) {
+                HStack(alignment: .top) {
+                    AvatarImageView(url: item.userAvatarUrl)
+                    MarkdownText(item.issue)
+                        .padding(.top, 3)
+                }
+                Divider()
+                HStack(alignment: .top) {
+                    Image("chatgpt-icon")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .cornerRadius(5)
+                        .padding(.trailing, 10)
+                    if item.isResponse {
+                        MarkdownText(item.answer ?? "")
+                    } else {
+                        ProgressView()
+                        Text("Loading..".localized())
+                            .padding(.leading, 10)
+                    }
+                }
+                .padding([.top, .bottom], 3)
+            }.contextMenu {
+                ChatContextMenu(searchText: $searchText, chatModel: chatModel, item: item)
+            }
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(8)
+        .padding([.top, .leading, .trailing], 6)
+        .transition(.opacity)
+        .animation(.linear, value: messageAnimate)
+    }
+    
+    private func messageSend(_ value: AIChat) {
+        messageAnimate.toggle()
+    }
+}
+
+enum AIColor {
+    /// tableView background color
+    static var systemGroupedBackground: Color {
+        if #available(iOS 15.0, *) {
+            return Color(uiColor: UIColor.systemGroupedBackground)
+        } else {
+            // Fallback on earlier versions
+            return Color(hue: 240.0 / 360.0, saturation: 0.2, brightness: 0.97)
         }
     }
 }

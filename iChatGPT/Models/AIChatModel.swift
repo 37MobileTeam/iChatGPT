@@ -1,6 +1,7 @@
 
 import Foundation
 import OpenAI
+import Combine
 
 let ChatGPTOpenAIKey = "ChatGPTOpenAIKey"
 let ChatGPTModelName = "ChatGPTModelName"
@@ -24,6 +25,8 @@ class AIChatModel: ObservableObject {
     var isRefreshSession: Bool = false
     @Published var contents: [AIChat] = []
     private var bot: Chatbot?
+    let newMessageSubject = PassthroughSubject<AIChat, Never>()
+    
     init(contents: [AIChat]) {
         self.contents = contents
         loadChatbot()
