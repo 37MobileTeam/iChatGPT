@@ -25,7 +25,7 @@ struct AIChatView: View {
                     }
                 }
                 .padding(.bottom, 6)
-                .background(AIColor.systemGroupedBackground)
+                .background(Color(.systemGroupedBackground))
                 .onReceive(chatModel.newMessageSubject, perform: messageSend(_:))
                 
                 Spacer()
@@ -111,7 +111,7 @@ struct AIChatView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.secondarySystemGroupedBackground))
         .cornerRadius(8)
         .padding([.top, .leading, .trailing], 6)
         .transition(.opacity)
@@ -120,18 +120,6 @@ struct AIChatView: View {
     
     private func messageSend(_ value: AIChat) {
         messageAnimate.toggle()
-    }
-}
-
-enum AIColor {
-    /// tableView background color
-    static var systemGroupedBackground: Color {
-        if #available(iOS 15.0, *) {
-            return Color(uiColor: UIColor.systemGroupedBackground)
-        } else {
-            // Fallback on earlier versions
-            return Color(hue: 240.0 / 360.0, saturation: 0.2, brightness: 0.97)
-        }
     }
 }
 
