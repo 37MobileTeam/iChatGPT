@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5248705D29CA022D00B9AC8F /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 5248705C29CA022D00B9AC8F /* SwiftUIX */; };
 		6D37A73B29C6D76800EF1F7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D37A73D29C6D76800EF1F7B /* Localizable.strings */; };
 		6D5C556B2944408700FCF891 /* ImageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5C556A2944408700FCF891 /* ImageLoaderView.swift */; };
 		6DAA91802943448D004ACD01 /* MarkdownText in Frameworks */ = {isa = PBXBuildFile; productRef = 6DAA917F2943448D004ACD01 /* MarkdownText */; };
@@ -84,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5248705D29CA022D00B9AC8F /* SwiftUIX in Frameworks */,
 				8D204CCE29B5FB7D00AD3056 /* OpenAI in Frameworks */,
 				6DAA91802943448D004ACD01 /* MarkdownText in Frameworks */,
 			);
@@ -222,6 +224,7 @@
 			packageProductDependencies = (
 				6DAA917F2943448D004ACD01 /* MarkdownText */,
 				8D204CCD29B5FB7D00AD3056 /* OpenAI */,
+				5248705C29CA022D00B9AC8F /* SwiftUIX */,
 			);
 			productName = iChatGPT;
 			productReference = 6DC88ADA2942C8AD00DA6C55 /* iChatGPT.app */;
@@ -300,6 +303,7 @@
 			packageReferences = (
 				6DAA917E2943448D004ACD01 /* XCRemoteSwiftPackageReference "MarkdownText" */,
 				8D204CCC29B5FB7D00AD3056 /* XCRemoteSwiftPackageReference "OpenAI" */,
+				5248705B29CA022D00B9AC8F /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 6DC88ADB2942C8AD00DA6C55 /* Products */;
 			projectDirPath = "";
@@ -716,6 +720,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5248705B29CA022D00B9AC8F /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
 		6DAA917E2943448D004ACD01 /* XCRemoteSwiftPackageReference "MarkdownText" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/shaps80/MarkdownText.git";
@@ -735,6 +747,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5248705C29CA022D00B9AC8F /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5248705B29CA022D00B9AC8F /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
 		6DAA917F2943448D004ACD01 /* MarkdownText */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6DAA917E2943448D004ACD01 /* XCRemoteSwiftPackageReference "MarkdownText" */;

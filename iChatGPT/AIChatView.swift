@@ -27,8 +27,8 @@ struct AIChatView: View {
                 .padding(.bottom, 6)
                 .background(Color(.systemGroupedBackground))
                 .onReceive(chatModel.newMessageSubject, perform: messageSend(_:))
-                
-                Spacer()
+                .frame(maxHeight: .infinity)
+            
                 ChatInputView(searchText: $searchText, chatModel: chatModel)
                     .padding([.leading, .trailing], 12)
             }

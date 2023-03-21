@@ -21,7 +21,6 @@ struct ScrollableView<Content: View>: View {
                 .modifier(ViewHeightKey())
                 .onPreferenceChange(ViewHeightKey.self) { height in
                     contentHeight = height
-                    isAnimation.toggle()
                 }
                 .frame(height: proxy.size.height)
                 .offset(y: offset(proxy.size.height, innerHeight: contentHeight))
@@ -42,13 +41,16 @@ struct ScrollableView<Content: View>: View {
         print("\n>>> total height: \(innerHeight)")
         print(">>> total offset: \(totalOffset)")
         print(">>> outer height: \(outheight)")
-        print(">>> offset: \(-((innerHeight / 2.0 - outheight / 2.0) - totalOffset))")
         
+        let offset: CGFloat
         if innerHeight < outheight {
-            return -(outheight / 2 - innerHeight / 2 - totalOffset)
+            offset = -(outheight / 2 - innerHeight / 2 - totalOffset)
+        }   else    {
+            offset = -((innerHeight / 2.0 - outheight / 2.0) - totalOffset)
         }
         
-        return -((innerHeight / 2.0 - outheight / 2.0) - totalOffset)
+        print(">>> offset: \(offset)")
+        return offset
     }
     
     private func onDragChange(_ value: DragGesture.Value) {
