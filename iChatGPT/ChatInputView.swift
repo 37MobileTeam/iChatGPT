@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 struct ChatInputView: View {
     
@@ -66,12 +67,11 @@ struct ChatInputView: View {
     
     @ViewBuilder private func textView() -> some View {
         if #available(iOS 15.0, *) {
-            TextField("Just ask..".localized(), text: $searchText, onEditingChanged: changedSearch(isEditing:))
-                .onSubmit(fetchSearch)
+            CocoaTextField("Just ask..".localized(), text: $searchText, onEditingChanged: changedSearch(isEditing:), onCommit: fetchSearch)
                 .submitLabel(.send)
         } else {
             // Fallback on earlier versions
-            TextField("Just ask..".localized(), text: $searchText,  onEditingChanged: changedSearch, onCommit: fetchSearch)
+            CocoaTextField("Just ask..".localized(), text: $searchText, onEditingChanged: changedSearch(isEditing:), onCommit: fetchSearch)
         }
     }
     
