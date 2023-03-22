@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 struct ChatInputView: View {
     
@@ -39,15 +40,9 @@ struct ChatInputView: View {
                             .padding(.trailing, 5)
                     }
                     
-                    let serachBar = TextField("Just ask..".localized(), text: $searchText,  onEditingChanged: changedSearch, onCommit: fetchSearch)
-                        .textFieldStyle(.plain)
+                    CocoaTextField("Just ask..".localized(), text: $searchText, onEditingChanged: changedSearch(isEditing:), onCommit: fetchSearch)
+                        .returnKeyType(.send)
                         .padding(.trailing, 8)
-                    
-                    if #available(iOS 15.0, *) {
-                        serachBar.submitLabel(.send)
-                    } else {
-                        serachBar
-                    }
                     
                     if searchText.count > 0 {
                         Button(action: clearSearch) {

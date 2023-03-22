@@ -11,6 +11,7 @@ import Combine
 import OpenAI
 
 class Chatbot {
+    var timeout: TimeInterval = 60
 	var userAvatarUrl = "https://raw.githubusercontent.com/37iOS/iChatGPT/main/icon.png"
     var openAIKey = ""
     var openAI: OpenAI
@@ -30,13 +31,15 @@ class Chatbot {
         print("prompts")
         print(prompts)
         var messages: [OpenAI.Chat] = []
+        // 每次只放此次提问之前三轮问答，且答案只放前面100字，已经足够AI推理了
+        let prompts = Array(prompts.suffix(4))
         for i in 0..<prompts.count {
             if i == prompts.count - 1 {
-                messages.append(.init(role: "user", content: prompts[i].issue))
+                messages.append(.init(role: .user, content: prompts[i].issue))
                 break
             }
-            messages.append(.init(role: "user", content: prompts[i].issue))
-            messages.append(.init(role: "assistant", content: prompts[i].answer ?? ""))
+            messages.append(.init(role: .user, content: prompts[i].issue))
+            messages.append(.init(role: .assistant, content: String((prompts[i].answer ?? "").prefix(100))))
         }
         print("message:")
         print(messages)

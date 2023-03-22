@@ -10,7 +10,12 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 #### 更新说明
 
-最新版本 v2.1:
+最新版本 v2.2:
+- Increased request timeout from 30 seconds to 60 seconds.（请求超时从 30 秒增加到 60 秒。）
+- When sending dialog context, only send the first three Q&A rounds, and submit only the first 100 characters of the answer.（发送对话上下文时，只发送提问的前三轮问答，且答案只提交前100个字。）
+- Fixed Chinese Pinyin input method typing interruption problem (thanks to @ypwhs/@coder-free/@0xfeedface1993).(修复中文拼音输入法打字中断的问题（感谢 @ypwhs、@coder-free、@0xfeedface1993）)
+
+v2.1:
 - support GPT-4 Model（支持 GPT-4 模型）
 - support English language（支持英文语言）
 - display configured API Key（显示已配置的 API Key）
@@ -107,6 +112,7 @@ TestFlight 下载地址：[https://testflight.apple.com/join/GR4BOt2M](https://t
 * [@iHTCboy](https://github.com/iHTCboy) 
 * [@AlphaGogoo (BWQ)](https://github.com/AlphaGogoo)
 * [@RbBtSn0w (Snow Wu)](https://github.com/RbBtSn0w)
+* [@0xfeedface1993 (John Corner)](https://github.com/0xfeedface1993)
 
 
 ### 五、效果示例
@@ -127,3 +133,4 @@ TestFlight 下载地址：[https://testflight.apple.com/join/GR4BOt2M](https://t
 - [A-kirami/nonebot-plugin-chatgpt](https://github.com/A-kirami/nonebot-plugin-chatgpt)
 - [shaps80/MarkdownText](https://github.com/shaps80/MarkdownText)
 - [MacPaw/OpenAI](https://github.com/MacPaw/OpenAI)
+- [SwiftUIX/SwiftUIX](https://github.com/SwiftUIX/SwiftUIX)
