@@ -40,8 +40,8 @@ struct ChatInputView: View {
                             .padding(.trailing, 5)
                     }
                     
-                    textView()
-                        .textFieldStyle(.plain)
+                    CocoaTextField("Just ask..".localized(), text: $searchText, onEditingChanged: changedSearch(isEditing:), onCommit: fetchSearch)
+                        .returnKeyType(.send)
                         .padding(.trailing, 8)
                     
                     if searchText.count > 0 {
@@ -63,16 +63,6 @@ struct ChatInputView: View {
             }
         }
         .padding(.bottom, 10)
-    }
-    
-    @ViewBuilder private func textView() -> some View {
-        if #available(iOS 15.0, *) {
-            CocoaTextField("Just ask..".localized(), text: $searchText, onEditingChanged: changedSearch(isEditing:), onCommit: fetchSearch)
-                .submitLabel(.send)
-        } else {
-            // Fallback on earlier versions
-            CocoaTextField("Just ask..".localized(), text: $searchText, onEditingChanged: changedSearch(isEditing:), onCommit: fetchSearch)
-        }
     }
     
     func changedSearch(isEditing: Bool) {

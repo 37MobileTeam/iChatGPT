@@ -40,7 +40,7 @@ struct TokenSettingView: View {
             HStack {
                 Spacer().frame(width: 50)
                 Spacer()
-                Text("Settings".localized()).font(.headline).fontWeight(.bold).padding([.top, .leading], 12)
+                Text("Settings".localized()).font(.title3).fontWeight(.bold).padding([.top, .leading], 12)
                 Spacer()
                 Button {
                     isAddPresented = false
@@ -165,7 +165,7 @@ struct TokenSettingView: View {
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 10)
                 
-                Text("Contributors：[@iHTCboy](https://github.com/iHTCboy) | [@AlphaGogoo](https://github.com/AlphaGogoo) | [@RbBtSn0w](https://github.com/RbBtSn0w)")
+                Text("Contributors：[@iHTCboy](https://github.com/iHTCboy) | [@AlphaGogoo](https://github.com/AlphaGogoo) | [@RbBtSn0w](https://github.com/RbBtSn0w) | [@0xfeedface1993](https://github.com/0xfeedface1993)")
                     .font(.footnote)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
