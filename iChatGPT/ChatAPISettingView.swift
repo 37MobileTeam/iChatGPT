@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-struct TokenSettingView: View {
+struct ChatAPISettingView: View {
     
-    @Binding var isAddPresented: Bool
+    @Binding var isKeyPresented: Bool
     @StateObject var chatModel: AIChatModel
     
     @State private var modelName: String = UserDefaults.standard.string(forKey: ChatGPTModelName) ?? "gpt-3.5-turbo"
@@ -43,7 +43,7 @@ struct TokenSettingView: View {
                 Text("Settings".localized()).font(.title3).fontWeight(.bold).padding([.top, .leading], 12)
                 Spacer()
                 Button {
-                    isAddPresented = false
+                    isKeyPresented = false
                 } label: {
                     Image(systemName: "xmark.circle").imageScale(.large)
                 }
@@ -140,7 +140,7 @@ struct TokenSettingView: View {
                 }
                 
                 UserDefaults.standard.set(OpenAIKey, forKey: ChatGPTOpenAIKey)
-                isAddPresented = false
+                isKeyPresented = false
                 chatModel.isRefreshSession = true
             }) {
                 Text("Save Key".localized())

@@ -13,7 +13,7 @@ struct ChatContextMenu: View {
     @Binding var searchText: String
     @StateObject var chatModel: AIChatModel
     let item: AIChat
-//
+    
     var body: some View {
         VStack {
             CreateMenuItem(text: "Re-question".localized(), imgName: "arrow.up.message") {
@@ -34,18 +34,18 @@ struct ChatContextMenu: View {
             .disabled(item.answer == nil)
 
             CreateMenuItem(text: "Copy Question to Inputbox".localized(), imgName: "keyboard.badge.ellipsis") {
-                searchText = item.issue
+                searchText = searchText + item.issue
             }
 
             // remove item
             let isWait = chatModel.contents.filter({ $0.isResponse == false })
+            
             CreateMenuItem(text: "Delete Question".localized(), imgName: "trash", isDestructive: true) {
                 if let index = chatModel.contents.firstIndex(where: { $0.datetime == item.datetime })
                 {
                     chatModel.contents.remove(at: index)
                 }
-            }.disabled(isWait.count > 0)
-            
+            }
 
             CreateMenuItem(text: "Delete All".localized(), imgName: "trash", isDestructive: true) {
                 chatModel.contents.removeAll()
