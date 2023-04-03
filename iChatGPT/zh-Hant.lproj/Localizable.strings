@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  iChatGPT
+
+  Created by HTC on 2023/3/19.
+  Copyright © 2023 37 Mobile Games. All rights reserved.
+*/
+
+"Loading.." = "載入中..";
+"Just ask.." = "隨便問..";
+"Re-question" = "重新提問";
+"Copy Question" = "複製問題";
+"Copy Answer" = "複製答案";
+"Copy Question and Answer" = "複製問題和答案";
+"Copy Question to Inputbox" = "複製問題到輸入框";
+"Delete Question" = "刪除問題";
+"Delete All" = "刪除全部";
+"Settings" = "設置";
+"Please enter OpenAI Key" = "請輸入 OpenAI Key";
+"OpenAI Key cannot be empty" = "OpenAI Key 不能為空";
+"Save Key" = "保存 Key";
+"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "開發者：37手遊iOS技術運營團隊\nGitHub 開源：https://github.com/37iOS/iChatGPT";
+"Open a new conversation" = "打開一個新的對話";
+"The current chat log will be saved and closed, and a new chat session will be created." = "當前的對話記錄將會保存和關閉，並創建一個新的聊天對話。";
+"Create" = "創建";
+"Re-ask" = "重新提問";
+"Re-request the last question." = "重新請求最後一個問題。";
+"OK" = "確定";
+"Clear current conversation" = "清空當前對話";
+"Clears the current conversation and deletes the saved conversation history." = "清空當前對話和刪除保存的對話記錄。";
+"Clear" = "清空";
+"No conversations" = "無對話記錄";
+"Delete Chat" = "刪除對話";
+"Are you sure you want to delete this chat?" = "確定刪除此聊天對話嗎？";
+"Delete" = "刪除";
+"Chat History" = "歷史對話";
+"Coming soon.." = "馬上來，敬請期待..";
+"Room Settings" = "聊天室設置";

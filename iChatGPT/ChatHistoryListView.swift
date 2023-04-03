@@ -27,9 +27,9 @@ struct ChatHistoryListView: View {
             }
             .alert(isPresented: $showingDeleteAlert) {
                 Alert(
-                    title: Text("Delete Chat"),
-                    message: Text("Are you sure you want to delete this chat?"),
-                    primaryButton: .destructive(Text("Delete")) {
+                    title: Text("Delete Chat".localized()),
+                    message: Text("Are you sure you want to delete this chat?".localized()),
+                    primaryButton: .destructive(Text("Delete".localized())) {
                         if let item = itemToDelete {
                             deleteChat(item: item)
                         }
@@ -38,7 +38,7 @@ struct ChatHistoryListView: View {
                 )
             }
             .listStyle(PlainListStyle())
-            .navigationTitle("Chat History")
+            .navigationTitle("Chat History".localized())
             .toolbar {
                 Button(action: onCloseButtonTapped) {
                     Image(systemName: "xmark.circle").imageScale(.large)
@@ -57,7 +57,7 @@ struct ChatHistoryListView: View {
                             itemToDelete = item
                             showingDeleteAlert = true
                         } label: {
-                            Label("Delete", systemImage: "trash")
+                            Label("Delete".localized(), systemImage: "trash")
                         }
                         .tint(.red)
                     }
@@ -81,34 +81,33 @@ struct ChatHistoryListView: View {
                 .padding(.trailing, 10)
             
             VStack(alignment: .leading) {
-                Text(item.roomID.formatTimestamp())
-                    .font(.headline)
-                    .padding(.bottom, 5)
+
+                HStack() {
+                    Text(item.roomID.formatTimestamp())
+                        .font(.headline)
+                    
+                    Spacer()
+                    
+                    Text(" \(ChatMessageStore.shared.messages(forRoom: item.roomID).count) ")
+                        .font(.footnote)
+                        .foregroundColor(.white)
+                        .padding(5)
+                        .background(Color.blue.opacity(0.8))
+                        .clipShape(Capsule())
+                }
+                .padding(.bottom, 5)
                 
-                Text(ChatMessageStore.shared.lastMessage(item.roomID)?.issue ?? "无对话记录")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-            }
-            
-            Spacer()
-            
-            VStack(alignment: .trailing) {
-                
-                Spacer().height(10)
-                
-                Text(" \(ChatMessageStore.shared.messages(forRoom: item.roomID).count) ")
-                    .font(.footnote)
-                    .foregroundColor(.white)
-                    .padding(5)
-                    .background(Color.blue.opacity(0.8))
-                    .clipShape(Capsule())
-                
-                Spacer()
-                
-                Text(ChatMessageStore.shared.lastMessage(item.roomID)?.datetime ?? "")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .padding(.bottom, 5)
+                HStack() {
+                    Text(ChatMessageStore.shared.lastMessage(item.roomID)?.issue ?? "No conversations".localized())
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                    
+                    Spacer()
+                    
+                    Text(ChatMessageStore.shared.lastMessage(item.roomID)?.datetime ?? "")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
             }
         }
         .contentShape(Rectangle())

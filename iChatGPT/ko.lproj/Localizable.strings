@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  iChatGPT
+
+  Created by HTC on 2023/3/19.
+  Copyright © 2023 37 Mobile Games. All rights reserved.
+*/
+
+"Loading.." = "로딩 중..";
+"Just ask.." = "무엇이든 물어보세요..";
+"Re-question" = "질문 다시하기";
+"Copy Question" = "질문 복사";
+"Copy Answer" = "답변 복사";
+"Copy Question and Answer" = "질문과 답변 복사";
+"Copy Question to Inputbox" = "질문을 입력 상자에 복사";
+"Delete Question" = "질문 삭제";
+"Delete All" = "모두 삭제";
+"Settings" = "설정";
+"Please enter OpenAI Key" = "OpenAI Key를 입력해주세요";
+"OpenAI Key cannot be empty" = "OpenAI Key는 비워둘 수 없습니다";
+"Save Key" = "키 저장";
+"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "개발자: 37 모바일 iOS 기술 팀\nGitHub: https://github.com/37iOS/iChatGPT";
+"Open a new conversation" = "새 대화 열기";
+"The current chat log will be saved and closed, and a new chat session will be created." = "현재 채팅 로그는 저장되고 닫히며 새로운 채팅 세션이 생성됩니다.";
+"Create" = "생성";
+"Re-ask" = "다시 물어보기";
+"Re-request the last question." = "마지막 질문을 다시 요청합니다.";
+"OK" = "확인";
+"Clear current conversation" = "현재 대화 지우기";
+"Clears the current conversation and deletes the saved conversation history." = "현재 대화를 지우고 저장된 대화 기록을 삭제합니다.";
+"Clear" = "지우기";
+"No conversations" = "대화 없음";
+"Delete Chat" = "채팅 삭제";
+"Are you sure you want to delete this chat?" = "이 채팅을 삭제하시겠습니까?";
+"Delete" = "삭제";
+"Chat History" = "채팅 기록";
+"Coming soon.." = "곧 출시 예정..";
+"Room Settings" = "방 설정";

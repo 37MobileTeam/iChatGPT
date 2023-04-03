@@ -11,30 +11,13 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 #### 更新说明
 
 最新版本 v2.3
-- Create new conversations.（创建新的对话）
-- Save conversation records.（保存对话记录）
-- Toggle history conversations.（切换历史对话）
-- Support multi-line text input.（创建新的对话）
-- scroll to the top of the conversation list.（滚动到对话列表的顶部）
-- Automatically scroll to the bottom of the conversation list.（自动滚动到对话列表的底部）
-- Conversations can be recorded without context (Click the icon on the left of the input box to switch).（请求时可不带历史对话记录（点击输入框左边图标切换））
-
-v2.2:
-- Increased request timeout from 30 seconds to 60 seconds.（请求超时从 30 秒增加到 60 秒。）
-- When sending dialog context, only send the first three Q&A rounds, and submit only the first 100 characters of the answer.（发送对话上下文时，只发送提问的前三轮问答，且答案只提交前100个字。）
-- Fixed Chinese Pinyin input method typing interruption problem (thanks to @ypwhs/@coder-free/@0xfeedface1993).(修复中文拼音输入法打字中断的问题（感谢 @ypwhs、@coder-free、@0xfeedface1993）)
-
-v2.1:
-- support GPT-4 Model（支持 GPT-4 模型）
-- support English language（支持英文语言）
-- display configured API Key（显示已配置的 API Key）
-
-
-v2.0:
-- support OpenAI API key
-- base GPT3.5 Turbo
-
-> 注意：需要填写自己的 OpenAI API key，app 不提供 key！ 
+- Create new conversation. (创建新的对话)
+- Save conversation records. (保存对话记录)
+- Switch to historical conversations. (切换历史对话)
+- Scroll to the top of the conversation list. (滚动到对话列表的顶部)
+- Auto-scroll to the bottom of the conversation list. (自动滚动到对话列表的底部)
+- Option to request conversations without historical records (click on the icon on the left side of the input box to toggle). (请求时可不带历史对话记录)
+- Support for additional languages (Traditional Chinese, Korean, Japanese, French, German, Russian, etc.). (支持更多语言（繁体中文、韩文、日文、法语、德语、俄语等）)
 
 **支持功能**
 
@@ -55,7 +38,7 @@ v2.0:
 * ~~显示个人头像~~
 * ~~请求失败重试等~~
 * ~~支持多语言，如英文~~
-* 保存对话
+* ~~保存对话~~
 * 代码没有高亮
 * 悬浮窗模式
 * 保存 pdf 文件
@@ -115,6 +98,25 @@ TestFlight 下载地址：[https://testflight.apple.com/join/GR4BOt2M](https://t
 
 - [New Issue](https://github.com/37iOS/iChatGPT/issues/new/choose)
 
+
+#### 3.4 历史更新功能
+
+v2.2:
+- Increased request timeout from 30 seconds to 60 seconds.（请求超时从 30 秒增加到 60 秒。）
+- When sending dialog context, only send the first three Q&A rounds, and submit only the first 100 characters of the answer.（发送对话上下文时，只发送提问的前三轮问答，且答案只提交前100个字。）
+- Fixed Chinese Pinyin input method typing interruption problem (thanks to @ypwhs/@coder-free/@0xfeedface1993).(修复中文拼音输入法打字中断的问题（感谢 @ypwhs、@coder-free、@0xfeedface1993）)
+
+v2.1:
+- support GPT-4 Model（支持 GPT-4 模型）
+- support English language（支持英文语言）
+- display configured API Key（显示已配置的 API Key）
+
+
+v2.0:
+- support OpenAI API key
+- base GPT3.5 Turbo
+
+> 注意：需要填写自己的 OpenAI API key，app 不提供 key！ 
 
 ### 四、Contributors 
 
