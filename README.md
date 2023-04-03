@@ -10,7 +10,16 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 #### 更新说明
 
-最新版本 v2.2:
+最新版本 v2.3
+- Create new conversations.（创建新的对话）
+- Save conversation records.（保存对话记录）
+- Toggle history conversations.（切换历史对话）
+- Support multi-line text input.（创建新的对话）
+- scroll to the top of the conversation list.（滚动到对话列表的顶部）
+- Automatically scroll to the bottom of the conversation list.（自动滚动到对话列表的底部）
+- Conversations can be recorded without context (Click the icon on the left of the input box to switch).（请求时可不带历史对话记录（点击输入框左边图标切换））
+
+v2.2:
 - Increased request timeout from 30 seconds to 60 seconds.（请求超时从 30 秒增加到 60 秒。）
 - When sending dialog context, only send the first three Q&A rounds, and submit only the first 100 characters of the answer.（发送对话上下文时，只发送提问的前三轮问答，且答案只提交前100个字。）
 - Fixed Chinese Pinyin input method typing interruption problem (thanks to @ypwhs/@coder-free/@0xfeedface1993).(修复中文拼音输入法打字中断的问题（感谢 @ypwhs、@coder-free、@0xfeedface1993）)

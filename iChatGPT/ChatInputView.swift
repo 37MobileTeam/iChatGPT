@@ -13,53 +13,137 @@ struct ChatInputView: View {
     
     @Binding var searchText: String
     @StateObject var chatModel: AIChatModel
+    @EnvironmentObject var model: AIChatInputModel
     @State private var isEditing = false
     
     var body: some View {
-        HStack {
-            ZStack(alignment: .leading){
-                Rectangle()
-                #if os(macOS)
-                    .foregroundColor(Color(NSColor.gray))
-                #else
-                    .foregroundColor(Color(UIColor.tertiarySystemGroupedBackground))
-                #endif
-                    .cornerRadius(10)
-                    .frame(height: 40)
-                HStack {
-                    
-                    if #available(iOS 15.0, *) {
-                        Image(systemName: "message.and.waveform")
-                            .foregroundColor(.gray)
-                            .padding(.leading, 8)
-                            .padding(.trailing, 5)
-                    } else {
-                        Image(systemName: "message")
-                            .foregroundColor(.gray)
-                            .padding(.leading, 8)
-                            .padding(.trailing, 5)
+        VStack(alignment: .leading){
+            HStack {
+                Spacer()
+                
+                Button(action: {
+                    model.activeAlert = .createNewChatRoom
+                    model.showingAlert.toggle()
+                }) {
+                    Image(systemName: "plus.square.on.square")
+                }
+                .padding(.trailing, 5)
+                .foregroundColor(.lightGray)
+                .buttonStyle(PlainButtonStyle())
+                .disabled(!chatModel.contents.filter({ $0.isResponse == false }).isEmpty)
+                
+                if !chatModel.contents.isEmpty {
+                    Button(action: {
+                        model.activeAlert = .reloadLastQuestion
+                        model.showingAlert.toggle()
+                    }) {
+                        Image(systemName: "arrow.clockwise")
                     }
+                    .padding(.trailing, 5)
+                    .foregroundColor(.lightGray)
+                    .buttonStyle(PlainButtonStyle())
                     
-                    CocoaTextField("Just ask..".localized(), text: $searchText, onEditingChanged: changedSearch(isEditing:), onCommit: fetchSearch)
-                        .returnKeyType(.send)
-                        .padding(.trailing, 8)
-                    
-                    if searchText.count > 0 {
-                        Button(action: clearSearch) {
-                            Image(systemName: "multiply.circle.fill")
+                    Button(action: {
+                        model.activeAlert = .clearAllQuestion
+                        model.showingAlert.toggle()
+                    }) {
+                        Image(systemName: "trash")
+                    }
+                    .padding(.trailing, 5)
+                    .foregroundColor(.lightGray)
+                    .buttonStyle(PlainButtonStyle())
+                }
+                
+                Button(action: {
+                    model.isShowAllChatRoom.toggle()
+                }) {
+                    Image(systemName: "clock.arrow.circlepath")
+                }
+                .padding(.trailing, 5)
+                .foregroundColor(.lightGray)
+                .buttonStyle(PlainButtonStyle())
+                .disabled(!chatModel.contents.filter({ $0.isResponse == false }).isEmpty)
+                
+                Button(action: {
+                    model.isConfigChatRoom.toggle()
+                }) {
+                    Image(systemName: "gearshape")
+                }
+                .padding(.trailing, 8)
+                .foregroundColor(.lightGray)
+                .buttonStyle(PlainButtonStyle())
+                .disabled(!chatModel.contents.filter({ $0.isResponse == false }).isEmpty)
+                
+                if !chatModel.contents.isEmpty {
+                    Button(action: {
+                        model.isScrollToChatRoomTop.toggle()
+                    }) {
+                        if #available(iOS 15, *) {
+                            Image(systemName: "arrow.up.to.line.compact")
+                        } else {
+                            Image(systemName: "arrow.up.to.line")
                         }
-                        .padding(.trailing, 8)
-                        .foregroundColor(.gray)
-                        .buttonStyle(PlainButtonStyle())
                     }
+                    .padding(.trailing, 5)
+                    .foregroundColor(.lightGray)
+                    .buttonStyle(PlainButtonStyle())
+                }
+                
+                if isEditing {
+                    Button(action: cancelSearch) {
+                        Image(systemName: "keyboard.chevron.compact.down")
+                    }
+                    .padding(.trailing, 8)
+                    .foregroundColor(.lightGray)
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
+            .padding(.bottom, 5)
             
-            if isEditing {
-                Button(action: cancelSearch) {
-                    Image(systemName: "keyboard.chevron.compact.down")
+            HStack {
+                ZStack(alignment: .leading){
+                    Rectangle()
+                    #if os(macOS)
+                        .foregroundColor(Color(NSColor.gray))
+                    #else
+                        .foregroundColor(Color(UIColor.tertiarySystemGroupedBackground))
+                    #endif
+                        .cornerRadius(10)
+                        .frame(height: 40)
+                    HStack {
+                        Image(systemName: chatModel.isSendContext ? "text.bubble" : "bubble.left")
+                            .scaleEffect(x: -1, y: 1)
+                            .foregroundColor(chatModel.isSendContext ? .blue : .gray)
+                            .padding(.leading, 8)
+                            .padding(.trailing, 5)
+                            .onTapGesture {
+                                chatModel.isSendContext.toggle()
+                            }
+                        
+                        TextView("Just ask..".localized(), text: $searchText, onEditingChanged: changedSearch(isEditing:), onCommit: fetchSearch)
+                            .returnKeyType(.default)
+                            .scrollIndicatorStyle(HiddenScrollViewIndicatorStyle())
+                            .padding(.trailing, 3)
+                            .padding([.top], 12)
+                            .maxHeight(44)
+                        
+                        if searchText.count > 0 {
+                            Button(action: clearSearch) {
+                                Image(systemName: "multiply.circle.fill")
+                            }
+                            .padding(.trailing, 5)
+                            .foregroundColor(.placeholderText)
+                            .buttonStyle(PlainButtonStyle())
+                            
+                            Button(action: fetchSearch) {
+                                Image(systemName: "arrow.up.circle.fill")
+                            }
+                            .padding(.trailing, 8)
+                            .foregroundColor(.green)
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
                 }
-                .buttonStyle(PlainButtonStyle())
             }
         }
         .padding(.bottom, 10)
