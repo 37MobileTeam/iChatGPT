@@ -15,9 +15,9 @@ struct ChatRoomConfigView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Coming soon..").font(.title2)
+                Text("Coming soon..".localized()).font(.title2)
             }
-            .navigationTitle("Room Settings")
+            .navigationTitle("Room Settings".localized())
             .toolbar {
                 Button(action: onCloseButtonTapped) {
                     Image(systemName: "xmark.circle").imageScale(.large)

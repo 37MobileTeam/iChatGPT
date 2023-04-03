@@ -146,9 +146,9 @@ extension AIChatView {
     
     func CreateNewChatRoom() -> Alert {
         Alert(
-            title: Text("打开一个新的对话"),
-            message: Text("当前的对话记录将会保存和关闭，并创建一个新的聊天对话。"),
-            primaryButton: .default(Text("创建")) {
+            title: Text("Open a new conversation".localized()),
+            message: Text("The current chat log will be saved and closed, and a new chat session will be created.".localized()),
+            primaryButton: .default(Text("Create".localized())) {
                 chatModel.resetRoom(nil)
             },
             secondaryButton: .cancel()
@@ -157,9 +157,9 @@ extension AIChatView {
     
     func ReloadLastQuestion() -> Alert {
         Alert(
-            title: Text("重新提问"),
-            message: Text("重新请求最后一个问题。"),
-            primaryButton: .default(Text("确定")) {
+            title: Text("Re-ask".localized()),
+            message: Text("Re-request the last question.".localized()),
+            primaryButton: .default(Text("OK".localized())) {
                 if let issue = chatModel.contents.last?.issue {
                     chatModel.getChatResponse(prompt: issue)
                 }
@@ -170,9 +170,9 @@ extension AIChatView {
     
     func ClearAllQuestion() -> Alert {
         Alert(
-            title: Text("清空当前对话"),
-            message: Text("清空当前对话和删除保存的对话记录。"),
-            primaryButton: .destructive(Text("清空")) {
+            title: Text("Clear current conversation".localized()),
+            message: Text("Clears the current conversation and deletes the saved conversation history.".localized()),
+            primaryButton: .destructive(Text("Clear".localized())) {
                 chatModel.contents.removeAll()
             },
             secondaryButton: .cancel()

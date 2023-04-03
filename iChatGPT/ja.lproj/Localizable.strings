@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  iChatGPT
+
+  Created by HTC on 2023/3/19.
+  Copyright © 2023 37 Mobile Games. All rights reserved.
+*/
+
+"Loading.." = "読み込み中..";
+"Just ask.." = "何でも聞いて..";
+"Re-question" = "質問をやり直す";
+"Copy Question" = "質問をコピー";
+"Copy Answer" = "答えをコピー";
+"Copy Question and Answer" = "質問と答えをコピー";
+"Copy Question to Inputbox" = "質問を入力ボックスにコピー";
+"Delete Question" = "質問を削除";
+"Delete All" = "すべて削除";
+"Settings" = "設定";
+"Please enter OpenAI Key" = "OpenAI Keyを入力してください";
+"OpenAI Key cannot be empty" = "OpenAI Keyは空にできません";
+"Save Key" = "キーを保存";
+"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "開発者：37モバイルiOS技術チーム\nGitHub：https://github.com/37iOS/iChatGPT";
+"Open a new conversation" = "新しい会話を開く";
+"The current chat log will be saved and closed, and a new chat session will be created." = "現在のチャットログは保存され、閉じられ、新しいチャットセッションが作成されます。";
+"Create" = "作成";
+"Re-ask" = "再度質問する";
+"Re-request the last question." = "最後の質問を再リクエストする。";
+"OK" = "OK";
+"Clear current conversation" = "現在の会話をクリア";
+"Clears the current conversation and deletes the saved conversation history." = "現在の会話をクリアし、保存された会話履歴を削除します。";
+"Clear" = "クリア";
+"No conversations" = "会話がありません";
+"Delete Chat" = "チャットを削除";
+"Are you sure you want to delete this chat?" = "このチャットを削除してもよろしいですか？";
+"Delete" = "削除";
+"Chat History" = "チャット履歴";
+"Coming soon.." = "もうすぐ..";
+"Room Settings" = "ルーム設定";

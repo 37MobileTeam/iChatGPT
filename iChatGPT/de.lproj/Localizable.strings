@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  iChatGPT
+
+  Created by HTC on 2023/3/19.
+  Copyright © 2023 37 Mobile Games. All rights reserved.
+*/
+
+"Loading.." = "Laden..";
+"Just ask.." = "Fragen Sie einfach..";
+"Re-question" = "Frage erneut stellen";
+"Copy Question" = "Frage kopieren";
+"Copy Answer" = "Antwort kopieren";
+"Copy Question and Answer" = "Frage und Antwort kopieren";
+"Copy Question to Inputbox" = "Frage in Eingabefeld kopieren";
+"Delete Question" = "Frage löschen";
+"Delete All" = "Alle löschen";
+"Settings" = "Einstellungen";
+"Please enter OpenAI Key" = "Bitte geben Sie den OpenAI-Schlüssel ein";
+"OpenAI Key cannot be empty" = "OpenAI-Schlüssel darf nicht leer sein";
+"Save Key" = "Schlüssel speichern";
+"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "Entwickler: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT";
+"Open a new conversation" = "Ein neues Gespräch öffnen";
+"The current chat log will be saved and closed, and a new chat session will be created." = "Das aktuelle Chat-Protokoll wird gespeichert und geschlossen, und eine neue Chat-Sitzung wird erstellt.";
+"Create" = "Erstellen";
+"Re-ask" = "Erneut fragen";
+"Re-request the last question." = "Die letzte Frage erneut anfordern.";
+"OK" = "OK";
+"Clear current conversation" = "Aktuelles Gespräch löschen";
+"Clears the current conversation and deletes the saved conversation history." = "Löscht das aktuelle Gespräch und löscht den gespeicherten Gesprächsverlauf.";
+"Clear" = "Löschen";
+"No conversations" = "Keine Gespräche";
+"Delete Chat" = "Chat löschen";
+"Are you sure you want to delete this chat?" = "Möchten Sie diesen Chat wirklich löschen?";
+"Delete" = "Löschen";
+"Chat History" = "Chat-Verlauf";
+"Coming soon.." = "In Kürze verfügbar..";
+"Room Settings" = "Raumeinstellungen";

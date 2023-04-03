@@ -56,6 +56,12 @@
 /* Begin PBXFileReference section */
 		6D37A73C29C6D76800EF1F7B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6D37A73E29C6D76B00EF1F7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6D4D38A529DA746700505FE3 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		6D4D38A629DA754A00505FE3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6D4D38A729DA755100505FE3 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6D4D38A829DA765E00505FE3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6D4D38A929DA767100505FE3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6D4D38AA29DA767B00505FE3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6D5C55682944317300FCF891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D5C556A2944408700FCF891 /* ImageLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderView.swift; sourceTree = "<group>"; };
 		6D7C1A202945809C008EB1CA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -308,6 +314,12 @@
 				"zh-Hans",
 				en,
 				Base,
+				"zh-Hant",
+				ja,
+				ko,
+				fr,
+				ru,
+				de,
 			);
 			mainGroup = 6DC88AD12942C8AD00DA6C55;
 			packageReferences = (
@@ -417,6 +429,12 @@
 			children = (
 				6D37A73C29C6D76800EF1F7B /* zh-Hans */,
 				6D37A73E29C6D76B00EF1F7B /* en */,
+				6D4D38A529DA746700505FE3 /* zh-Hant */,
+				6D4D38A629DA754A00505FE3 /* ja */,
+				6D4D38A729DA755100505FE3 /* ko */,
+				6D4D38A829DA765E00505FE3 /* fr */,
+				6D4D38A929DA767100505FE3 /* ru */,
+				6D4D38AA29DA767B00505FE3 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -549,10 +567,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023.4.22;
+				CURRENT_PROJECT_VERSION = 2023.4.03;
 				DEVELOPMENT_ASSET_PATHS = "\"iChatGPT/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = R5CQXUM9ZW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iChatGPT/Info.plist;
@@ -572,6 +593,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.37iOS.iChatGPT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = common_iPhone18;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -588,10 +610,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023.4.22;
+				CURRENT_PROJECT_VERSION = 2023.4.03;
 				DEVELOPMENT_ASSET_PATHS = "\"iChatGPT/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = R5CQXUM9ZW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iChatGPT/Info.plist;
@@ -611,6 +636,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.37iOS.iChatGPT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = common_iPhone18;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
