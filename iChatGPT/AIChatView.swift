@@ -13,61 +13,15 @@ struct AIChatView: View {
     
     @State private var isScrollListTop: Bool = false
     @State private var isSettingsPresented: Bool = false
+    @State private var isSharing = false
     @StateObject private var chatModel = AIChatModel(roomID: ChatRoomStore.shared.lastRoomId())
     @StateObject private var inputModel = AIChatInputModel()
+    @StateObject private var shareContent = ShareContent()
     
     var body: some View {
         NavigationView {
             VStack {
-                ScrollViewReader { proxy in
-                    List {
-                        ForEach(chatModel.contents, id: \.datetime) { item in
-                            Section(header: Text(item.datetime)) {
-                                VStack(alignment: .leading) {
-                                    HStack(alignment: .top) {
-                                        AvatarImageView(url: item.userAvatarUrl)
-                                        MarkdownText(item.issue.replacingOccurrences(of: "\n", with: "\n\n"))
-                                            .padding(.top, 3)
-                                    }
-                                    Divider()
-                                    HStack(alignment: .top) {
-                                        Image("chatgpt-icon")
-                                            .resizable()
-                                            .frame(width: 25, height: 25)
-                                            .cornerRadius(5)
-                                            .padding(.trailing, 10)
-                                        if item.isResponse {
-                                            MarkdownText(item.answer ?? "")
-                                        } else {
-                                            ProgressView()
-                                            Text("Loading..".localized())
-                                                .padding(.leading, 10)
-                                        }
-                                    }
-                                    .padding([.top, .bottom], 3)
-                                }.contextMenu {
-                                    ChatContextMenu(searchText: $inputModel.searchText, chatModel: chatModel, item: item)
-                                }
-                            }
-                        }
-                    }
-                    .listStyle(InsetGroupedListStyle())
-                    .onChange(of: chatModel.isScrollListBottom) { _ in
-                        if let lastId = chatModel.contents.last?.datetime {
-                            withAnimation {
-                                proxy.scrollTo(lastId, anchor: .trailing)
-                            }
-                        }
-                    }
-                    .onChange(of: isScrollListTop) { _ in
-                        if let firstId = chatModel.contents.first?.datetime {
-                            withAnimation {
-                                proxy.scrollTo(firstId, anchor: .leading)
-                            }
-                        }
-                    }
-                }
-                
+                chatList
                 Spacer()
                 ChatInputView(searchText: $inputModel.searchText, chatModel: chatModel)
                     .padding([.leading, .trailing], 12)
@@ -79,12 +33,8 @@ struct AIChatView: View {
             .markdownOrderedListBulletStyle(.custom)
             .markdownUnorderedListBulletStyle(.custom)
             .markdownImageStyle(.custom)
-            .navigationTitle("OpenAI ChatGPT")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing:
-                HStack {
-                    addButton
-            })
+            .navigationBarItems(trailing: addButton)
             .sheet(isPresented: $isSettingsPresented) {
                 ChatAPISettingView(isKeyPresented: $isSettingsPresented, chatModel: chatModel)
             }
@@ -99,6 +49,9 @@ struct AIChatView: View {
             .sheet(isPresented: $inputModel.isConfigChatRoom) {
                 ChatRoomConfigView(isKeyPresented: $inputModel.isConfigChatRoom)
             }
+            .sheet(isPresented: $isSharing) {
+                ActivityView(activityItems: $shareContent.activityItems)
+            }
             .alert(isPresented: $inputModel.showingAlert) {
                 switch inputModel.activeAlert {
                 case .createNewChatRoom:
@@ -107,6 +60,8 @@ struct AIChatView: View {
                     return ReloadLastQuestion()
                 case .clearAllQuestion:
                     return ClearAllQuestion()
+                case .shareContents:
+                    return ShareContents()
                 }
             }
             .onChange(of: inputModel.isScrollToChatRoomTop) { _ in
@@ -126,6 +81,61 @@ struct AIChatView: View {
         .environmentObject(inputModel)
     }
     
+    @ViewBuilder
+    var chatList: some View {
+        ScrollViewReader { proxy in
+            List {
+                ForEach(chatModel.contents, id: \.datetime) { item in
+                    Section(header: Text(item.datetime)) {
+                        VStack(alignment: .leading) {
+                            HStack(alignment: .top) {
+                                AvatarImageView(url: item.userAvatarUrl)
+                                MarkdownText(item.issue.replacingOccurrences(of: "\n", with: "\n\n"))
+                                    .padding(.top, 3)
+                            }
+                            Divider()
+                            HStack(alignment: .top) {
+                                Image("chatgpt-icon")
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                                    .cornerRadius(5)
+                                    .padding(.trailing, 10)
+                                if item.isResponse {
+                                    MarkdownText(item.answer ?? "")
+                                } else {
+                                    ProgressView()
+                                    Text("Loading..".localized())
+                                        .padding(.leading, 10)
+                                }
+                            }
+                            .padding([.top, .bottom], 3)
+                        }.contextMenu {
+                            ChatContextMenu(searchText: $inputModel.searchText, chatModel: chatModel, item: item)
+                        }
+                    }
+                }
+            }
+            .listStyle(InsetGroupedListStyle())
+            .onChange(of: chatModel.isScrollListBottom) { _ in
+                if let lastId = chatModel.contents.last?.datetime {
+                    // try fix macOS crash
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                        withAnimation {
+                            proxy.scrollTo(lastId, anchor: .trailing)
+                        }
+                    }
+                }
+            }
+            .onChange(of: isScrollListTop) { _ in
+                if let firstId = chatModel.contents.first?.datetime {
+                    withAnimation {
+                        proxy.scrollTo(firstId, anchor: .leading)
+                    }
+                }
+            }
+        }
+    }
+    
     private var addButton: some View {
         Button(action: {
             isSettingsPresented.toggle()
@@ -136,7 +146,9 @@ struct AIChatView: View {
                 } else {
                     Image(systemName: "key.icloud").imageScale(.large)
                 }
-            }.frame(height: 40)
+            }
+            .frame(height: 40)
+            .padding(.trailing, 5)
         }
     }
 }
@@ -177,6 +189,87 @@ extension AIChatView {
             },
             secondaryButton: .cancel()
         )
+    }
+    
+    func ShareContents() -> Alert {
+        Alert(title: Text("Share"),
+              message: Text("Choose a sharing format"),
+              primaryButton: .default(Text("Image")) {
+                screenshotAndShare(isImage: true)
+              },
+              secondaryButton: .default(Text("PDF")) {
+                screenshotAndShare(isImage: false)
+              }
+        )
+    }
+}
+
+
+
+// MARK: - Handle Share Image/PDF
+extension AIChatView {
+    
+    private func screenshotAndShare(isImage: Bool) {
+        if let image = screenshot() {
+            if isImage {
+                shareContent.activityItems = [image]
+                isSharing = true
+            } else {
+                if let pdfData = imageToPDFData(image: image) {
+                    let temporaryDirectoryURL = FileManager.default.temporaryDirectory
+                    let fileName = "iChatGPT-Screenshot.pdf"
+                    let fileURL = temporaryDirectoryURL.appendingPathComponent(fileName)
+                    
+                    do {
+                        try pdfData.write(to: fileURL, options: .atomic)
+                        shareContent.activityItems = [fileURL]
+                        isSharing = true
+                    } catch {
+                        print("Error writing PDF data to file: \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
+    private func screenshot() -> UIImage? {
+        let controller = UIHostingController(rootView: self)
+        let view = controller.view
+
+        let targetSize = UIScreen.main.bounds.size
+        view?.frame = CGRect(origin: .zero, size: targetSize)
+        view?.backgroundColor = .clear
+
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+        return renderer.image { _ in
+            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+        }
+    }
+    
+    private func imageToPDFData(image: UIImage) -> Data? {
+        let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(origin: .zero, size: image.size))
+        let pdfData = pdfRenderer.pdfData { (context) in
+            context.beginPage()
+            image.draw(in: CGRect(origin: .zero, size: image.size))
+        }
+        return pdfData
+    }
+}
+
+class ShareContent: ObservableObject {
+    @Published var activityItems: [Any] = []
+}
+
+// MARK: Render UIActivityViewController
+struct ActivityView: UIViewControllerRepresentable {
+    @Binding var activityItems: [Any]
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityView>) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityView>) {
     }
 }
 
