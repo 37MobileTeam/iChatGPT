@@ -91,7 +91,8 @@ struct ChatHistoryListView: View {
                     Text(" \(ChatMessageStore.shared.messages(forRoom: item.roomID).count) ")
                         .font(.footnote)
                         .foregroundColor(.white)
-                        .padding(5)
+                        .padding([.top, .bottom], 3)
+                        .padding([.leading, .trailing], 4)
                         .background(Color.blue.opacity(0.8))
                         .clipShape(Capsule())
                 }
@@ -101,6 +102,7 @@ struct ChatHistoryListView: View {
                     Text(ChatMessageStore.shared.lastMessage(item.roomID)?.issue ?? "No conversations".localized())
                         .font(.subheadline)
                         .foregroundColor(.gray)
+                        .lineLimit(2)
                     
                     Spacer()
                     

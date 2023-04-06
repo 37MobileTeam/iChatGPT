@@ -52,6 +52,16 @@ struct ChatInputView: View {
                     .padding(.trailing, 5)
                     .foregroundColor(.lightGray)
                     .buttonStyle(PlainButtonStyle())
+                    
+                    Button(action: {
+                        model.activeAlert = .shareContents
+                        model.showingAlert.toggle()
+                    }) {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    .padding(.trailing, 5)
+                    .foregroundColor(.lightGray)
+                    .buttonStyle(PlainButtonStyle())
                 }
                 
                 Button(action: {

@@ -9,7 +9,7 @@
 import Foundation
 
 enum InputViewAlert {
-    case createNewChatRoom, reloadLastQuestion, clearAllQuestion
+    case createNewChatRoom, reloadLastQuestion, clearAllQuestion, shareContents
 }
 
 class AIChatInputModel: ObservableObject {
