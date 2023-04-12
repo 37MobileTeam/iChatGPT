@@ -26,14 +26,15 @@ class Chatbot {
         userAvatarUrl
     }
 
-    func getChatGPTAnswer(prompts: [AIChat], sendContext: Bool, completion: @escaping (String) -> Void) {
+    func getChatGPTAnswer(prompts: [AIChat], sendContext: Bool, roomModel: ChatRoom?, completion: @escaping (String) -> Void) {
         // 构建对话记录
         print("prompts")
         print(prompts)
         var messages: [OpenAI.Chat] = []
         if sendContext {
             // 每次只放此次提问之前三轮问答，且答案只放前面100字，已经足够AI推理了
-            let prompts = Array(prompts.suffix(4))
+            let historyCount = roomModel?.historyCount ?? 3
+            let prompts = Array(prompts.suffix(historyCount + 1))
             for i in 0..<prompts.count {
                 if i == prompts.count - 1 {
                     messages.append(.init(role: .user, content: prompts[i].issue))
@@ -45,12 +46,16 @@ class Chatbot {
         } else {
             messages.append(.init(role: .user, content: prompts.last?.issue ?? ""))
         }
+        if let prompt = roomModel?.prompt, !prompt.isEmpty {
+            messages.append(.init(role: .system, content: prompt))
+        }
+        
         print("message:")
         print(messages)
         let model = prompts.last?.model ?? "gpt-3.5-turbo"
         print("model:")
         print(model)
-        openAI.chats(query: .init(model: model, messages: messages), timeoutInterval: 30) { data in
+        openAI.chats(query: .init(model: model, messages: messages, temperature: roomModel?.temperature ?? 0.7), timeoutInterval: 30) { data in
             print("data:")
             print(data)
             do {
@@ -66,23 +71,6 @@ class Chatbot {
                 }
             }
         }
-//        let query = OpenAI.ChatQuery(model: .gpt3_5Turbo, messages: messages)
-//        openAI.chats(query: query) { data in
-//            print("data")
-//            print(data)
-//            do {
-//                let res = try data.get().choices[0].message.content
-//                DispatchQueue.main.async {
-//                    completion(res)
-//                }
-//            } catch {
-//                print(error)
-//                let errorMessage = error.localizedDescription
-//                DispatchQueue.main.async {
-//                    completion(errorMessage)
-//                }
-//            }
-//        }
     }
 
 }

@@ -10,14 +10,14 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 #### 更新说明
 
-最新版本 v2.3
-- Create new conversation. (创建新的对话)
-- Save conversation records. (保存对话记录)
-- Switch to historical conversations. (切换历史对话)
-- Scroll to the top of the conversation list. (滚动到对话列表的顶部)
-- Auto-scroll to the bottom of the conversation list. (自动滚动到对话列表的底部)
-- Option to request conversations without historical records (click on the icon on the left side of the input box to toggle). (请求时可不带历史对话记录)
-- Support for additional languages (Traditional Chinese, Korean, Japanese, French, German, Russian, etc.). (支持更多语言（繁体中文、韩文、日文、法语、德语、俄语等）)
+最新版本 v2.5
+
+- Added chat room settings with Prompt and Temperature parameter configuration. (新增聊天室设置功能，支持 Prompt 和 Temperature 参数配置。)
+- Display current conversation identifier in the history list. (历史对话列表增加显示当前对话标识。)
+- Fixed potential crash when sending conversations. (修复发送对话时可能会崩溃的问题。)
+- Removed restrictions on creating new conversations and switching history when requesting a conversation. (请求对话时，取消创建新对话和切换历史对话的禁用限制。)
+- Improved multi-language translations for sharing feature. (完善分享功能的多语言翻译。)
+
 
 **支持功能**
 
@@ -100,6 +100,19 @@ TestFlight 下载地址：[https://testflight.apple.com/join/GR4BOt2M](https://t
 
 
 #### 3.4 历史更新功能
+
+v2.4:
+- Add sharing function（增加分享功能）
+- Fix the history list is too high（修复历史列表过高）
+
+v2.3:
+- Create new conversation. (创建新的对话)
+- Save conversation records. (保存对话记录)
+- Switch to historical conversations. (切换历史对话)
+- Scroll to the top of the conversation list. (滚动到对话列表的顶部)
+- Auto-scroll to the bottom of the conversation list. (自动滚动到对话列表的底部)
+- Option to request conversations without historical records (click on the icon on the left side of the input box to toggle). (请求时可不带历史对话记录)
+- Support for additional languages (Traditional Chinese, Korean, Japanese, French, German, Russian, etc.). (支持更多语言（繁体中文、韩文、日文、法语、德语、俄语等）)
 
 v2.2:
 - Increased request timeout from 30 seconds to 60 seconds.（请求超时从 30 秒增加到 60 秒。）

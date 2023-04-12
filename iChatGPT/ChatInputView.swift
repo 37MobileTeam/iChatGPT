@@ -30,7 +30,6 @@ struct ChatInputView: View {
                 .padding(.trailing, 5)
                 .foregroundColor(.lightGray)
                 .buttonStyle(PlainButtonStyle())
-                .disabled(!chatModel.contents.filter({ $0.isResponse == false }).isEmpty)
                 
                 if !chatModel.contents.isEmpty {
                     Button(action: {
@@ -72,7 +71,6 @@ struct ChatInputView: View {
                 .padding(.trailing, 5)
                 .foregroundColor(.lightGray)
                 .buttonStyle(PlainButtonStyle())
-                .disabled(!chatModel.contents.filter({ $0.isResponse == false }).isEmpty)
                 
                 Button(action: {
                     model.isConfigChatRoom.toggle()
@@ -82,7 +80,6 @@ struct ChatInputView: View {
                 .padding(.trailing, 8)
                 .foregroundColor(.lightGray)
                 .buttonStyle(PlainButtonStyle())
-                .disabled(!chatModel.contents.filter({ $0.isResponse == false }).isEmpty)
                 
                 if !chatModel.contents.isEmpty {
                     Button(action: {
