@@ -83,10 +83,20 @@ struct ChatHistoryListView: View {
             VStack(alignment: .leading) {
 
                 HStack() {
-                    Text(item.roomID.formatTimestamp())
+                    Text(item.roomName ?? item.roomID.formatTimestamp())
                         .font(.headline)
                     
                     Spacer()
+                    
+                    if item.roomID == chatModel.roomID {
+                        Text(" \("Current Chat".localized()) ")
+                            .font(.footnote)
+                            .foregroundColor(.white)
+                            .padding([.top, .bottom], 3)
+                            .padding([.leading, .trailing], 4)
+                            .background(Color.red.opacity(0.8))
+                            .clipShape(Capsule())
+                    }
                     
                     Text(" \(ChatMessageStore.shared.messages(forRoom: item.roomID).count) ")
                         .font(.footnote)

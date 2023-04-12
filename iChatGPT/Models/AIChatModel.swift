@@ -32,12 +32,6 @@ class AIChatModel: ObservableObject {
     }
     /// room id
     var roomID: String
-    /// api model
-    var apiModel: String {
-        didSet {
-            saveRoomConfigData()
-        }
-    }
     /// 更新 token 时更新请求的会话
     var isRefreshSession: Bool = false
     private var bot: Chatbot?
@@ -45,13 +39,12 @@ class AIChatModel: ObservableObject {
     init(roomID: String?) {
         let roomID = roomID ?? String(Int(Date().timeIntervalSince1970))
         self.roomID = roomID
-        if let room = ChatRoomStore.shared.chatRoom(roomID) {
-            apiModel = room.model ?? UserDefaults.standard.string(forKey: ChatGPTModelName) ?? "gpt-3.5-turbo"
+        if ChatRoomStore.shared.chatRoom(roomID) != nil {
             let messages = ChatMessageStore.shared.messages(forRoom: roomID)
             contents.append(contentsOf: messages)
         } else {
-            apiModel = UserDefaults.standard.string(forKey: ChatGPTModelName) ?? "gpt-3.5-turbo"
-            ChatRoomStore.shared.addChatRoom(ChatRoom(roomID: roomID))
+            let model = UserDefaults.standard.string(forKey: ChatGPTModelName) ?? "gpt-3.5-turbo"
+            ChatRoomStore.shared.addChatRoom(ChatRoom(roomID: roomID, model: model))
         }
         loadChatbot()
     }
@@ -60,8 +53,8 @@ class AIChatModel: ObservableObject {
         let newRoomID = roomID ?? String(Int(Date().timeIntervalSince1970))
         self.roomID = newRoomID
         self.contents = ChatMessageStore.shared.messages(forRoom: newRoomID)
-        apiModel = UserDefaults.standard.string(forKey: ChatGPTModelName) ?? "gpt-3.5-turbo"
-        let room = ChatRoomStore.shared.chatRoom(newRoomID) ?? ChatRoom(roomID: newRoomID)
+        let model = UserDefaults.standard.string(forKey: ChatGPTModelName) ?? "gpt-3.5-turbo"
+        let room = ChatRoomStore.shared.chatRoom(newRoomID) ?? ChatRoom(roomID: newRoomID, model: model)
         ChatRoomStore.shared.addChatRoom(room)
         loadChatbot()
     }
@@ -70,19 +63,22 @@ class AIChatModel: ObservableObject {
         if isRefreshSession {
             loadChatbot()
         }
-        let index = contents.count
         let userAvatarUrl = self.bot?.getUserAvatar() ?? ""
+        let roomModel =  ChatRoomStore.shared.chatRoom(roomID)
         let model = UserDefaults.standard.string(forKey: ChatGPTModelName) ?? "gpt-3.5-turbo"
         var chat = AIChat(datetime: Date().currentDateString(), issue: prompt, model: model, userAvatarUrl: userAvatarUrl)
         contents.append(chat)
         isScrollListBottom.toggle()
         
-        self.bot?.getChatGPTAnswer(prompts: contents, sendContext: isSendContext) { answer in
+        self.bot?.getChatGPTAnswer(prompts: contents, sendContext: isSendContext, roomModel: roomModel) { answer in
             let content = answer
             DispatchQueue.main.async { [self] in
                 chat.answer = content
                 chat.isResponse = true
-                contents[index] = chat
+                // 找到要替换的元素在数组中的索引位置
+                if let index = contents.lastIndex(where: { $0.datetime == chat.datetime && $0.issue == chat.issue }) {
+                    contents[index] = chat
+                }
             }
         }
     }
@@ -90,7 +86,7 @@ class AIChatModel: ObservableObject {
     func loadChatbot() {
         isRefreshSession = false
         let chatGPTOpenAIKey = UserDefaults.standard.string(forKey: ChatGPTOpenAIKey) ?? ""
-        bot = Chatbot( openAIKey: chatGPTOpenAIKey)
+        bot = Chatbot(openAIKey: chatGPTOpenAIKey)
     }
     
     func saveMessagesData() {

@@ -47,7 +47,7 @@ struct AIChatView: View {
                 })
             }
             .sheet(isPresented: $inputModel.isConfigChatRoom) {
-                ChatRoomConfigView(isKeyPresented: $inputModel.isConfigChatRoom)
+                ChatRoomConfigView(isKeyPresented: $inputModel.isConfigChatRoom, chatModel: chatModel)
             }
             .sheet(isPresented: $isSharing) {
                 ActivityView(activityItems: $shareContent.activityItems)
@@ -192,12 +192,12 @@ extension AIChatView {
     }
     
     func ShareContents() -> Alert {
-        Alert(title: Text("Share"),
-              message: Text("Choose a sharing format"),
-              primaryButton: .default(Text("Image")) {
+        Alert(title: Text("Share".localized()),
+              message: Text("Choose a sharing format".localized()),
+              primaryButton: .default(Text("Image".localized())) {
                 screenshotAndShare(isImage: true)
               },
-              secondaryButton: .default(Text("PDF")) {
+              secondaryButton: .default(Text("PDF".localized())) {
                 screenshotAndShare(isImage: false)
               }
         )
