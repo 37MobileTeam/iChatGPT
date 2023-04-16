@@ -19,7 +19,7 @@ struct ChatRoomConfigView: View {
     @State var prompt: String = ""
     @State var temperature: String = ""
     @State var historyCount: String = ""
-    @State var model: String = ""
+    @State var selectedModel: Int = 0
     @State var isDirty: Bool = false
     @State var showingAlert: Bool = false
     @State var alertMessage: String = ""
@@ -33,8 +33,14 @@ struct ChatRoomConfigView: View {
         _prompt = State(initialValue: room?.prompt ?? "")
         _temperature = State(initialValue: "\(room?.temperature ?? 0.7)")
         _historyCount = State(initialValue: "\(room?.historyCount ?? 0)")
-        _model = State(initialValue: room?.model ?? "")
         _isDirty = State(initialValue: false)
+        
+        if let savedModelName = room?.model,
+           let index = kAPIModels.firstIndex(of: savedModelName) {
+            _selectedModel = State(initialValue: index)
+        } else {
+            _selectedModel = State(initialValue: 0)
+        }
     }
     
     var body: some View {
@@ -47,7 +53,14 @@ struct ChatRoomConfigView: View {
                 ConfigCellView(title: "Prompt".localized(), subtitle: "Prompt description.".localized(), value: $prompt, description: "Prompt text to generate contextual information for the corresponding text.".localized())
                 ConfigCellView(title: "Temperature".localized(), subtitle: "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.".localized(), value: $temperature, description: "The default temperature is 0.7".localized())
                 ConfigCellView(title: "Chat History".localized(), subtitle: "How much context information is carried when sending a dialog.".localized(), value: $historyCount, description: "Default is the last 3 conversations.".localized())
-                //ConfigCellView(title: "Model", subtitle: "ChatGPT 模型", value: $model, description: "The model used for processing")
+                
+                Section(header: Text("API Model".localized())) {
+                    Picker(selection: $selectedModel, label: Text("Select Room API Model".localized())) {
+                        ForEach(0..<kAPIModels.count, id: \.self) {
+                            Text(kAPIModels[$0])
+                        }
+                    }
+                }
             }
             .navigationBarTitle(Text("Room Settings".localized()))
             .navigationBarItems(
@@ -65,11 +78,14 @@ struct ChatRoomConfigView: View {
             .alert(isPresented: $showingAlert) {
                 ShowAlterView()
             }
-            .onChange(of: [roomName, prompt, temperature, historyCount, model]) { _ in
+            .onChange(of: selectedModel) { _ in
+                self.isDirty = true
+            }
+            .onChange(of: [roomName, prompt, temperature, historyCount]) { _ in
                 self.isDirty = true
             }
             .gesture(
-                TapGesture().onEnded {
+                TapGesture(count: 2).onEnded {
                     hideKeyboard()
                 }
             )
@@ -91,6 +107,7 @@ struct ChatRoomConfigView: View {
             return
         }
         
+        let model = kAPIModels[selectedModel]
         let room = ChatRoom(roomID: chatModel.roomID, roomName: roomName, model: model, prompt: prompt.isEmpty ? nil : prompt, temperature: tempValue, historyCount: histCountValue)
         ChatRoomStore.shared.updateChatRoom(for: chatModel.roomID, room: room)
         self.isDirty = false
@@ -109,11 +126,6 @@ struct ChatRoomConfigView: View {
     
     private func onCloseButtonTapped() {
         isKeyPresented = false
-    }
-    
-    /// 当用户点击其他区域时隐藏软键盘
-    private func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 

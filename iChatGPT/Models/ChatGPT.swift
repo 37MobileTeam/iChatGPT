@@ -10,16 +10,21 @@ import Foundation
 import Combine
 import OpenAI
 
+let kDeafultAPIHost = "api.openai.com"
+let kDeafultAPITimeout = 30.0
+let kAPIModels = [Model.gpt3_5Turbo, Model.gpt4, Model.gpt4_32k, Model.gpt4_0314, Model.gpt4_32k_0314, Model.gpt3_5Turbo0301]
+
 class Chatbot {
     var timeout: TimeInterval = 60
-	var userAvatarUrl = "https://raw.githubusercontent.com/37iOS/iChatGPT/main/icon.png"
+	var userAvatarUrl = "" //"https://raw.githubusercontent.com/37iOS/iChatGPT/main/icon.png"
     var openAIKey = ""
     var openAI: OpenAI
     var answer = ""
 	
-    init(openAIKey:String) {
+    init(openAIKey:String, timeout: TimeInterval = kDeafultAPITimeout, host: String? = kDeafultAPIHost) {
         self.openAIKey = openAIKey
-        self.openAI = OpenAI(apiToken: self.openAIKey)
+        let config = OpenAI.Configuration(token: self.openAIKey, host: host ?? kDeafultAPIHost, timeoutInterval: timeout)
+        self.openAI = OpenAI(configuration: config)
 	}
 
     func getUserAvatar() -> String {
@@ -30,7 +35,7 @@ class Chatbot {
         // 构建对话记录
         print("prompts")
         print(prompts)
-        var messages: [OpenAI.Chat] = []
+        var messages: [Chat] = []
         if sendContext {
             // 每次只放此次提问之前三轮问答，且答案只放前面100字，已经足够AI推理了
             let historyCount = roomModel?.historyCount ?? 3
@@ -55,15 +60,16 @@ class Chatbot {
         let model = prompts.last?.model ?? "gpt-3.5-turbo"
         print("model:")
         print(model)
-        openAI.chats(query: .init(model: model, messages: messages, temperature: roomModel?.temperature ?? 0.7), timeoutInterval: 30) { data in
+        openAI.chats(query: .init(model: model, messages: messages, temperature: roomModel?.temperature ?? 0.7)) { result in
             print("data:")
-            print(data)
-            do {
-                let res = try data.get().choices[0].message.content
+            print(result)
+            switch result {
+            case .success(let chatResult):
+                let res = chatResult.choices.first?.message.content
                 DispatchQueue.main.async {
-                    completion(res)
+                    completion(res ?? "Unknown Error.")
                 }
-            } catch {
+            case .failure(let error):
                 print(error)
                 let errorMessage = error.localizedDescription
                 DispatchQueue.main.async {

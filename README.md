@@ -10,13 +10,13 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 #### 更新说明
 
-最新版本 v2.5
+最新版本 v2.6
 
-- Added chat room settings with Prompt and Temperature parameter configuration. (新增聊天室设置功能，支持 Prompt 和 Temperature 参数配置。)
-- Display current conversation identifier in the history list. (历史对话列表增加显示当前对话标识。)
-- Fixed potential crash when sending conversations. (修复发送对话时可能会崩溃的问题。)
-- Removed restrictions on creating new conversations and switching history when requesting a conversation. (请求对话时，取消创建新对话和切换历史对话的禁用限制。)
-- Improved multi-language translations for sharing feature. (完善分享功能的多语言翻译。)
+- 支持自定义 API URL
+- 支持设置 API 超时时间
+- 支持聊天室单独设置 API 模型
+- 支持更多的模型选择（如 gpt-4-32k 等）
+- 修复连续输入两个字符时，会自动变成字母的问题（如中文或日文等）
 
 
 **支持功能**
@@ -39,10 +39,15 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 * ~~请求失败重试等~~
 * ~~支持多语言，如英文~~
 * ~~保存对话~~
-* 代码没有高亮
-* 悬浮窗模式
-* 保存 pdf 文件
+* ~~保存 pdf 文件~~
+* ~~支持自定义 API URL~~
 * 自由的选择和复制文本
+* 支持语音输入
+* 支持代码高亮和复制等
+* 支持表格显示
+* 支持流式输出
+* 支持自定义图标
+* 悬浮窗模式
 * 更多功能，欢迎提 PR ~
 
 ### 二、安装说明
@@ -101,11 +106,18 @@ TestFlight 下载地址：[https://testflight.apple.com/join/GR4BOt2M](https://t
 
 #### 3.4 历史更新功能
 
-v2.4:
+**v2.5:**
+- Added chat room settings with Prompt and Temperature parameter configuration. (新增聊天室设置功能，支持 Prompt 和 Temperature 参数配置。)
+- Display current conversation identifier in the history list. (历史对话列表增加显示当前对话标识。)
+- Fixed potential crash when sending conversations. (修复发送对话时可能会崩溃的问题。)
+- Removed restrictions on creating new conversations and switching history when requesting a conversation. (请求对话时，取消创建新对话和切换历史对话的禁用限制。)
+- Improved multi-language translations for sharing feature. (完善分享功能的多语言翻译。)
+
+**v2.4:**
 - Add sharing function（增加分享功能）
 - Fix the history list is too high（修复历史列表过高）
 
-v2.3:
+**v2.3:**
 - Create new conversation. (创建新的对话)
 - Save conversation records. (保存对话记录)
 - Switch to historical conversations. (切换历史对话)
@@ -114,18 +126,18 @@ v2.3:
 - Option to request conversations without historical records (click on the icon on the left side of the input box to toggle). (请求时可不带历史对话记录)
 - Support for additional languages (Traditional Chinese, Korean, Japanese, French, German, Russian, etc.). (支持更多语言（繁体中文、韩文、日文、法语、德语、俄语等）)
 
-v2.2:
+**v2.2:**
 - Increased request timeout from 30 seconds to 60 seconds.（请求超时从 30 秒增加到 60 秒。）
 - When sending dialog context, only send the first three Q&A rounds, and submit only the first 100 characters of the answer.（发送对话上下文时，只发送提问的前三轮问答，且答案只提交前100个字。）
 - Fixed Chinese Pinyin input method typing interruption problem (thanks to @ypwhs/@coder-free/@0xfeedface1993).(修复中文拼音输入法打字中断的问题（感谢 @ypwhs、@coder-free、@0xfeedface1993）)
 
-v2.1:
+**v2.1:**
 - support GPT-4 Model（支持 GPT-4 模型）
 - support English language（支持英文语言）
 - display configured API Key（显示已配置的 API Key）
 
 
-v2.0:
+**v2.0:**
 - support OpenAI API key
 - base GPT3.5 Turbo
 

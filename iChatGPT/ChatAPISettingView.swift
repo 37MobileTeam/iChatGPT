@@ -7,172 +7,223 @@
 //
 
 import SwiftUI
+import OpenAI
 
 struct ChatAPISettingView: View {
     
     @Binding var isKeyPresented: Bool
     @StateObject var chatModel: AIChatModel
     
-    @State private var modelName: String = UserDefaults.standard.string(forKey: ChatGPTModelName) ?? "gpt-3.5-turbo"
-    @State private var modelViewIsExpanded = false
-    @State private var OpenAIKey: String = ""   //直接使用openai的key进行请求发送
-    @State private var kError: String = "" // 不能为空
+    @State private var selectedModel: Int = 0
+    @State private var apiHost = kDeafultAPIHost
+    @State private var apiKey = ""
+    @State private var maskedAPIKey = ""
+    @State private var apiTimeout = "\(kDeafultAPITimeout)"
+    
+    @State private var apiHostError = ""
+    @State private var apiKeyError = ""
+    @State private var apiTimeoutError = ""
+    @State private var isDirty: Bool = false
     
     private let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     private let appSubVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-    private let modelLists: [String] = ["gpt-3.5-turbo", "gpt-4"]
     
-    func lastOpenAIKey() -> String? {
+    init(isKeyPresented: Binding<Bool>, chatModel: AIChatModel) {
+        _isKeyPresented = isKeyPresented
+        _chatModel = StateObject(wrappedValue: chatModel)
         
-        guard let inputString = UserDefaults.standard.string(forKey: ChatGPTOpenAIKey) else { return nil }
+        if let savedModelName = UserDefaults.standard.string(forKey: ChatGPTModelName),
+           let index = kAPIModels.firstIndex(of: savedModelName) {
+            _selectedModel = State(initialValue: index)
+        } else {
+            _selectedModel = State(initialValue: 0)
+        }
         
-        let firstThree = inputString.prefix(3)
-        let lastThree = inputString.suffix(3)
-        let middle = String(repeating: "*", count: inputString.count - 6)
-        let outputString = "\(firstThree)\(middle)\(lastThree)"
+        if let lastHost = UserDefaults.standard.string(forKey: ChatGPTAPIHost) {
+            _apiHost = State(initialValue: lastHost)
+        }
         
-        return outputString
+        if let lastTime = UserDefaults.standard.string(forKey: ChatGPTAPITimeout) {
+            _apiTimeout = State(initialValue: lastTime)
+        }
+        
+        if let lastKey = lastOpenAIKey() {
+            _maskedAPIKey = State(initialValue: lastKey)
+        }
     }
     
-    
     var body: some View {
-        VStack {
-            HStack {
-                Spacer().frame(width: 50)
-                Spacer()
-                Text("Settings".localized()).font(.title3).fontWeight(.bold).padding([.top, .leading], 12)
-                Spacer()
-                Button {
-                    isKeyPresented = false
-                } label: {
-                    Image(systemName: "xmark.circle").imageScale(.large)
-                }
-                .frame(width: 60, height: 60, alignment: .center)
-                .padding([.top, .trailing], 8)
-            
-            }.padding(.bottom, 20)
-            
-            Spacer()
-            
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("API Model：")
-                    Button(action: {
-                        modelViewIsExpanded.toggle()
-                    }) {
-                        HStack {
-                            Image(systemName: "slider.horizontal.3").imageScale(.medium)
-                            Text(modelName)
-                        }.frame(height: 30)
+        NavigationView {
+            List {
+                Section(header: Text("API Model".localized())) {
+                    Picker(selection: $selectedModel, label: Text("Deafult API Model".localized())) {
+                        ForEach(0..<kAPIModels.count, id: \.self) {
+                            Text(kAPIModels[$0])
+                        }
                     }
-                    
-                    Spacer()
                 }
                 
-                if modelViewIsExpanded {
-                    Divider()
-                    ScrollView {
-                        ForEach(0..<modelLists.count, id: \.self){ index in
-                            HStack{
-                                let model = modelLists[index]
-                                if model == modelName {
-                                    Text(model).padding(.horizontal).padding(.top, 10).foregroundColor(.blue)
-                                } else {
-                                    Text(model).padding(.horizontal).padding(.top, 10)
-                                }
-                                Spacer()
-                                if model == modelName {
-                                    Image(systemName: "checkmark").padding(.horizontal).padding(.top, 10).foregroundColor(.blue)
-                                }
-                            }
-                            .background(Color(UIColor.systemBackground))
-                            .onTapGesture {
-                                let model = modelLists[index]
-                                UserDefaults.standard.set(model, forKey: ChatGPTModelName)
-                                withAnimation{
-                                    modelName = model
-                                    modelViewIsExpanded = false
-                                }
+                Section(header: Text("API Host".localized())) {
+                    TextField("For example: ".localized() + kDeafultAPIHost, text: $apiHost)
+                    if !apiHostError.isEmpty {
+                        HStack {
+                            Text(apiHostError)
+                                .foregroundColor(.red)
+                                
+                            Spacer()
+                            
+                            Button(action: {
+                                apiHost = kDeafultAPIHost
+                            }) {
+                                Text("Use Default".localized())
+                                    .foregroundColor(.blue)
+                                    .font(.footnote)
                             }
                         }
                     }
-                    .background(Color(UIColor.systemBackground))
-                    .frame(maxHeight: 100)
-                    
-                    Divider()
                 }
                 
-                Text("OpenAI Key:")
-                    .padding(.top, 15)
-                if #available(iOS 15.0, *) {
-                    TextField("Please enter OpenAI Key".localized(), text: $OpenAIKey)
-                        .frame(height: 40)
-                        .overlay(RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.secondary))
-                        .submitLabel(.done)
-                } else {
-                    TextField("Please enter OpenAI Key".localized(), text: $OpenAIKey)
-                        .frame(height: 40)
-                        .overlay(RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.secondary))
+                Section(header: Text("API Key".localized())) {
+                    TextField("Please enter OpenAI Key".localized(), text: $apiKey)
+                    if !apiKeyError.isEmpty {
+                        Text(apiKeyError)
+                            .foregroundColor(.red)
+                    }
+                    if !maskedAPIKey.isEmpty {
+                        HStack {
+                            Text("Current use Key: ".localized() + maskedAPIKey)
+                                .foregroundColor(.gray)
+                                .font(.footnote)
+                                
+                            Spacer()
+                            
+                            Button(action: {
+                                UserDefaults.standard.set(nil, forKey: ChatGPTOpenAIKey)
+                                maskedAPIKey = ""
+                            }) {
+                                Text("Delete".localized())
+                                    .foregroundColor(.red)
+                                    .font(.footnote)
+                            }
+                        }
+                    }
                 }
+                
+                Section(header: Text("API Timeout".localized())) {
+                    TextField("API Request timeout (seconds)".localized(), text: $apiTimeout)
+                        .keyboardType(.numberPad)
+                    if !apiTimeoutError.isEmpty {
+                        Text(apiTimeoutError)
+                            .foregroundColor(.red)
+                    }
+                }
+                
+                aboutAppSection
+            }
+            .listStyle(GroupedListStyle())
+            .navigationTitle("Settings".localized())
+            .navigationBarItems(
+                trailing:
+                    HStack {
+                        Button(action: saveSettings, label: {
+                            Text("Save".localized()).bold()
+                        }).disabled(!isDirty)
 
-                if kError.count > 0 && OpenAIKey.isEmpty {
-                    Text(kError)
-                        .foregroundColor(.red)
+                        Button(action: onCloseButtonTapped) {
+                            Image(systemName: "xmark.circle").imageScale(.large)
+                        }
+                    }
+            )
+            .onChange(of: selectedModel) { _ in
+                self.isDirty = validateSettings()
+            }
+            .onChange(of: [apiHost, apiKey, apiTimeout]) { _ in
+                self.isDirty = validateSettings()
+            }
+            .gesture(
+                TapGesture(count: 2).onEnded {
+                    hideKeyboard()
+                }
+            )
+        }
+    }
+
+    private func saveSettings() {
+        
+        if !validateSettings() {
+            return
+        }
+        
+        // Save settings to UserDefaults
+        UserDefaults.standard.set(kAPIModels[selectedModel], forKey: ChatGPTModelName)
+        UserDefaults.standard.set(apiHost, forKey: ChatGPTAPIHost)
+        if !apiKey.isEmpty {
+            UserDefaults.standard.set(apiKey, forKey: ChatGPTOpenAIKey)
+        }
+        UserDefaults.standard.set(apiTimeout, forKey: ChatGPTAPITimeout)
+        isKeyPresented = false
+        chatModel.isRefreshSession = true
+    }
+    
+    @discardableResult
+    private func validateSettings() -> Bool {
+        apiHostError = ""
+        apiKeyError = ""
+        apiTimeoutError = ""
+        
+        guard !apiHost.isEmpty, (URL(string: "https://" + apiHost) != nil) else {
+            apiHostError = "API host format is incorrect!".localized()
+            return false
+        }
+        
+        let apiKeyString = UserDefaults.standard.string(forKey: ChatGPTOpenAIKey) ?? ""
+        guard !apiKey.isEmpty || !apiKeyString.isEmpty else {
+            apiKeyError = "OpenAI Key cannot be empty".localized()
+            return false
+        }
+        guard !apiTimeout.isEmpty, let timeoutValue = Int(apiTimeout), timeoutValue > 0 else {
+            apiTimeoutError = "API timeout must be a number".localized()
+            return false
+        }
+        
+        return true
+    }
+    
+    private func onCloseButtonTapped() {
+        isKeyPresented = false
+    }
+    
+    private func lastOpenAIKey() -> String? {
+        guard let inputString = UserDefaults.standard.string(forKey: ChatGPTOpenAIKey) else { return nil }
+        guard inputString.count > 6 else { return inputString }
+        let firstThree = inputString.prefix(3)
+        let lastThree = inputString.suffix(3)
+        let masked = String(repeating: "*", count: min(inputString.count - 6, 10))
+        return "\(firstThree)\(masked)\(lastThree)"
+    }
+    
+    private var aboutAppSection: some View {
+        Section(header: Text("About App".localized())) {
+            ScrollView {
+                VStack {
+                    Text("v \(appVersion ?? "") (\(appSubVersion ?? ""))")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
                         .padding(.bottom, 10)
-                }
-                
-                if let lastOpenAIKey = lastOpenAIKey() {
-                    Text("Last OpenAI Key:")
-                        .padding(.top, 15)
-                    Text("\(lastOpenAIKey)")
-                        .font(.system(size: 12))
+
+                    Text(.init("Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT".localized()))
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom, 10)
+
+                    Text("Contributors：[@iHTCboy](https://github.com/iHTCboy) | [@AlphaGogoo](https://github.com/AlphaGogoo) | [@RbBtSn0w](https://github.com/RbBtSn0w) | [@0xfeedface1993](https://github.com/0xfeedface1993)")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
                 }
             }
-            .padding([.leading, .trailing], 20)
-            
-            Spacer()
-            Button(action: {
-                guard !OpenAIKey.isEmpty else{
-                    kError = "OpenAI Key cannot be empty".localized()
-                    return
-                }
-                
-                UserDefaults.standard.set(OpenAIKey, forKey: ChatGPTOpenAIKey)
-                isKeyPresented = false
-                chatModel.isRefreshSession = true
-            }) {
-                Text("Save Key".localized())
-                    .font(.title3)
-                    .foregroundColor(.blue)
-                    .padding([.leading, .trailing], 20)
-                    .padding([.top, .bottom], 6)
-                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.blue, lineWidth: 1))
-            }.padding([.top, .bottom], 25)
-            
-            Spacer()
-            
-            Group {
-                Text("v \(appVersion ?? "") (\(appSubVersion ?? ""))")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                    .padding(.bottom, 10)
-                
-                Text(.init("Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT".localized()))
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.bottom, 10)
-                
-                Text("Contributors：[@iHTCboy](https://github.com/iHTCboy) | [@AlphaGogoo](https://github.com/AlphaGogoo) | [@RbBtSn0w](https://github.com/RbBtSn0w) | [@0xfeedface1993](https://github.com/0xfeedface1993)")
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.bottom, 25)
-            }
+            .frame(maxHeight: 120)
         }
     }
 }
-
-

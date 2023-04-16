@@ -13,12 +13,6 @@ class ChatRoomStore: ObservableObject {
     
     public static let shared = ChatRoomStore()
     
-//    @Published var chatRooms = [ChatRoom]()
-
-//    init() {
-//        loadChatRooms()
-//    }
-    
     func lastRoomId() -> String? {
         let chatRooms = chatRooms()
         return chatRooms.last?.roomID

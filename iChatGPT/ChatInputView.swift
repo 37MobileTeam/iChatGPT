@@ -18,94 +18,7 @@ struct ChatInputView: View {
     
     var body: some View {
         VStack(alignment: .leading){
-            HStack {
-                Spacer()
-                
-                Button(action: {
-                    model.activeAlert = .createNewChatRoom
-                    model.showingAlert.toggle()
-                }) {
-                    Image(systemName: "plus.square.on.square")
-                }
-                .padding(.trailing, 5)
-                .foregroundColor(.lightGray)
-                .buttonStyle(PlainButtonStyle())
-                
-                if !chatModel.contents.isEmpty {
-                    Button(action: {
-                        model.activeAlert = .reloadLastQuestion
-                        model.showingAlert.toggle()
-                    }) {
-                        Image(systemName: "arrow.clockwise")
-                    }
-                    .padding(.trailing, 5)
-                    .foregroundColor(.lightGray)
-                    .buttonStyle(PlainButtonStyle())
-                    
-                    Button(action: {
-                        model.activeAlert = .clearAllQuestion
-                        model.showingAlert.toggle()
-                    }) {
-                        Image(systemName: "trash")
-                    }
-                    .padding(.trailing, 5)
-                    .foregroundColor(.lightGray)
-                    .buttonStyle(PlainButtonStyle())
-                    
-                    Button(action: {
-                        model.activeAlert = .shareContents
-                        model.showingAlert.toggle()
-                    }) {
-                        Image(systemName: "square.and.arrow.up")
-                    }
-                    .padding(.trailing, 5)
-                    .foregroundColor(.lightGray)
-                    .buttonStyle(PlainButtonStyle())
-                }
-                
-                Button(action: {
-                    model.isShowAllChatRoom.toggle()
-                }) {
-                    Image(systemName: "clock.arrow.circlepath")
-                }
-                .padding(.trailing, 5)
-                .foregroundColor(.lightGray)
-                .buttonStyle(PlainButtonStyle())
-                
-                Button(action: {
-                    model.isConfigChatRoom.toggle()
-                }) {
-                    Image(systemName: "gearshape")
-                }
-                .padding(.trailing, 8)
-                .foregroundColor(.lightGray)
-                .buttonStyle(PlainButtonStyle())
-                
-                if !chatModel.contents.isEmpty {
-                    Button(action: {
-                        model.isScrollToChatRoomTop.toggle()
-                    }) {
-                        if #available(iOS 15, *) {
-                            Image(systemName: "arrow.up.to.line.compact")
-                        } else {
-                            Image(systemName: "arrow.up.to.line")
-                        }
-                    }
-                    .padding(.trailing, 5)
-                    .foregroundColor(.lightGray)
-                    .buttonStyle(PlainButtonStyle())
-                }
-                
-                if isEditing {
-                    Button(action: cancelSearch) {
-                        Image(systemName: "keyboard.chevron.compact.down")
-                    }
-                    .padding(.trailing, 8)
-                    .foregroundColor(.lightGray)
-                    .buttonStyle(PlainButtonStyle())
-                }
-            }
-            .padding(.bottom, 5)
+            inputToolBar()
             
             HStack {
                 ZStack(alignment: .leading){
@@ -156,6 +69,97 @@ struct ChatInputView: View {
         .padding(.bottom, 10)
     }
     
+    @ViewBuilder private func inputToolBar() -> some View {
+        HStack {
+            Spacer()
+            
+            Button(action: {
+                model.activeAlert = .createNewChatRoom
+                model.showingAlert.toggle()
+            }) {
+                Image(systemName: "plus.square.on.square")
+            }
+            .padding(.trailing, 5)
+            .foregroundColor(.lightGray)
+            .buttonStyle(PlainButtonStyle())
+            
+            if !chatModel.contents.isEmpty {
+                Button(action: {
+                    model.activeAlert = .reloadLastQuestion
+                    model.showingAlert.toggle()
+                }) {
+                    Image(systemName: "arrow.clockwise")
+                }
+                .padding(.trailing, 5)
+                .foregroundColor(.lightGray)
+                .buttonStyle(PlainButtonStyle())
+                
+                Button(action: {
+                    model.activeAlert = .clearAllQuestion
+                    model.showingAlert.toggle()
+                }) {
+                    Image(systemName: "trash")
+                }
+                .padding(.trailing, 5)
+                .foregroundColor(.lightGray)
+                .buttonStyle(PlainButtonStyle())
+                
+                Button(action: {
+                    model.activeAlert = .shareContents
+                    model.showingAlert.toggle()
+                }) {
+                    Image(systemName: "square.and.arrow.up")
+                }
+                .padding(.trailing, 5)
+                .foregroundColor(.lightGray)
+                .buttonStyle(PlainButtonStyle())
+            }
+            
+            Button(action: {
+                model.isShowAllChatRoom.toggle()
+            }) {
+                Image(systemName: "clock.arrow.circlepath")
+            }
+            .padding(.trailing, 5)
+            .foregroundColor(.lightGray)
+            .buttonStyle(PlainButtonStyle())
+            
+            Button(action: {
+                model.isConfigChatRoom.toggle()
+            }) {
+                Image(systemName: "gearshape")
+            }
+            .padding(.trailing, 8)
+            .foregroundColor(.lightGray)
+            .buttonStyle(PlainButtonStyle())
+            
+            if !chatModel.contents.isEmpty {
+                Button(action: {
+                    model.isScrollToChatRoomTop.toggle()
+                }) {
+                    if #available(iOS 15, *) {
+                        Image(systemName: "arrow.up.to.line.compact")
+                    } else {
+                        Image(systemName: "arrow.up.to.line")
+                    }
+                }
+                .padding(.trailing, 5)
+                .foregroundColor(.lightGray)
+                .buttonStyle(PlainButtonStyle())
+            }
+            
+            if isEditing {
+                Button(action: hideKeyboard) {
+                    Image(systemName: "keyboard.chevron.compact.down")
+                }
+                .padding(.trailing, 8)
+                .foregroundColor(.lightGray)
+                .buttonStyle(PlainButtonStyle())
+            }
+        }
+        .padding(.bottom, 5)
+    }
+    
     func changedSearch(isEditing: Bool) {
         self.isEditing = isEditing
     }
@@ -175,9 +179,5 @@ struct ChatInputView: View {
     
     func clearSearch() {
         searchText = ""
-    }
-    
-    func cancelSearch() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
