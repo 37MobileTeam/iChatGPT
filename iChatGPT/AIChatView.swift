@@ -89,23 +89,23 @@ struct AIChatView: View {
                     Section(header: Text(item.datetime)) {
                         VStack(alignment: .leading) {
                             HStack(alignment: .top) {
-                                AvatarImageView(url: item.userAvatarUrl)
+                                IconAvatarImageView(name: "chatgpt-icon-user", stroke: true)
                                 MarkdownText(item.issue.replacingOccurrences(of: "\n", with: "\n\n"))
-                                    .padding(.top, 3)
+                                    .padding(.top, 2)
                             }
                             Divider()
                             HStack(alignment: .top) {
-                                Image("chatgpt-icon")
-                                    .resizable()
-                                    .frame(width: 25, height: 25)
-                                    .cornerRadius(5)
-                                    .padding(.trailing, 10)
+                                IconAvatarImageView(name: item.model.hasPrefix("gpt-4") ? "chatgpt-icon-4" : "chatgpt-icon")
                                 if item.isResponse {
                                     MarkdownText(item.answer ?? "")
+                                        .padding(.top, 2)
                                 } else {
-                                    ProgressView()
-                                    Text("Loading..".localized())
-                                        .padding(.leading, 10)
+                                    HStack {
+                                        ProgressView()
+                                        Text("Loading..".localized())
+                                            .padding(.leading, 10)
+                                    }
+                                    .padding(.top, 2)
                                 }
                             }
                             .padding([.top, .bottom], 3)
@@ -289,6 +289,32 @@ struct AvatarImageView: View {
         }
         .cornerRadius(5)
         .frame(width: 25, height: 25)
+        .padding(.trailing, 10)
+    }
+}
+
+struct IconAvatarImageView: View {
+    let name: String
+    var stroke: Bool = false
+
+    var body: some View {
+        HStack {
+            if stroke {
+                Image(name)
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.lightGray, lineWidth: 0.1)
+                    )
+            } else {
+                Image(name)
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+            }
+        }
         .padding(.trailing, 10)
     }
 }

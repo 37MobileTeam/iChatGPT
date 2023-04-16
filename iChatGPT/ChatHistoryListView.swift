@@ -73,8 +73,7 @@ struct ChatHistoryListView: View {
     
     private func chatRow(for item: ChatRoom) -> some View {
         HStack {
-            
-            Image("chatgpt-icon")
+            Image(item.model?.hasPrefix("gpt-4") ?? false ? "chatgpt-icon-4" : "chatgpt-icon")
                 .resizable()
                 .frame(width: 50, height: 50)
                 .cornerRadius(5)
