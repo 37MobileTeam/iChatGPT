@@ -203,27 +203,31 @@ struct ChatAPISettingView: View {
     }
     
     private var aboutAppSection: some View {
-        Section(header: Text("About App".localized())) {
-            ScrollView {
-                VStack {
-                    Text("v \(appVersion ?? "") (\(appSubVersion ?? ""))")
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                        .padding(.bottom, 10)
+        Section(header: Text("About App")) {
+            VStack {
+                ScrollView {
+                    VStack {
+                        Text("v \(appVersion ?? "") (\(appSubVersion ?? ""))")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                            .padding(.bottom, 10)
 
-                    Text(.init("Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT".localized()))
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.bottom, 10)
+                        Text(.init("Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT".localized()))
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.bottom, 10)
 
-                    Text("Contributors：[@iHTCboy](https://github.com/iHTCboy) | [@AlphaGogoo](https://github.com/AlphaGogoo) | [@RbBtSn0w](https://github.com/RbBtSn0w) | [@0xfeedface1993](https://github.com/0xfeedface1993)")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
+                        Text("Contributors：[@iHTCboy](https://github.com/iHTCboy) | [@AlphaGogoo](https://github.com/AlphaGogoo) | [@RbBtSn0w](https://github.com/RbBtSn0w) | [@0xfeedface1993](https://github.com/0xfeedface1993)")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.bottom, 25)
+                    }
                 }
+                .frame(maxHeight: 120)
             }
-            .frame(maxHeight: 120)
+            .frame(maxWidth: .infinity, alignment: .center)
         }
     }
 }
