@@ -18,7 +18,7 @@ struct ChatAPISettingView: View {
     @State private var apiHost = kDeafultAPIHost
     @State private var apiKey = ""
     @State private var maskedAPIKey = ""
-    @State private var apiTimeout = "\(kDeafultAPITimeout)"
+    @State private var apiTimeout = "\(Int(kDeafultAPITimeout))"
     
     @State private var apiHostError = ""
     @State private var apiKeyError = ""
