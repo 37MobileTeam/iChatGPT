@@ -16,8 +16,8 @@
 "Delete Question" = "質問を削除";
 "Delete All" = "すべて削除";
 "Settings" = "設定";
-"Please enter OpenAI Key" = "OpenAI Keyを入力してください";
-"OpenAI Key cannot be empty" = "OpenAI Keyは空にできません";
+"Please enter OpenAI Key" = "API Keyを入力してください";
+"OpenAI Key cannot be empty" = "API Keyは空にできません";
 "Save Key" = "キーを保存";
 "Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "開発者：37モバイルiOS技術チーム\nGitHub：https://github.com/37iOS/iChatGPT";
 "Open a new conversation" = "新しい会話を開く";
@@ -56,3 +56,11 @@
 "History message count must be an integer greater than or equal to 0." = "履歴メッセージの数は0以上の整数でなければなりません。";
 "Settings have been updated~" = "設定が更新されました~";
 "Tips" = "ヒント";
+"Select Room API Model" = "チャットルームAPIモデルの選択";
+"Deafult API Model" = "新しいチャットルームのデフォルトモデル";
+"For example: " = "例：";
+"Use Default" = "デフォルトを使用";
+"Current use Key: " = "現在使用中：";
+"API Request timeout (seconds)" = "APIリクエストタイムアウト（秒）";
+"API host format is incorrect!" = "APIホスト形式が正しくありません！";
+"API timeout must be a number" = "タイムアウトは数値でなければなりません";

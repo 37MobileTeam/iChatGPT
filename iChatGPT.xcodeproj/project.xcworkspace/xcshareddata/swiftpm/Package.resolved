@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MacPaw/OpenAI.git",
       "state" : {
-        "revision" : "a1286b98602201493e4cd3308bfa5e3ed0963051",
-        "version" : "0.0.7"
+        "revision" : "c1ee239b20f97344bb50ffd24361740ce1963181",
+        "version" : "0.1.1"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftUIX/SwiftUIX.git",
       "state" : {
-        "revision" : "1b8b443b61b8b37fafb06c1abad9b6be244c9de9",
-        "version" : "0.1.4"
+        "branch" : "master",
+        "revision" : "ec2c0719f048d7294749cb2e29df7560133ef09a"
       }
     }
   ],

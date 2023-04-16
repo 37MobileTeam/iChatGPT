@@ -16,8 +16,8 @@
 "Delete Question" = "Удалить вопрос";
 "Delete All" = "Удалить все";
 "Settings" = "Настройки";
-"Please enter OpenAI Key" = "Пожалуйста, введите ключ OpenAI";
-"OpenAI Key cannot be empty" = "Ключ OpenAI не может быть пустым";
+"Please enter OpenAI Key" = "Пожалуйста, введите ключ API";
+"OpenAI Key cannot be empty" = "Ключ API не может быть пустым";
 "Save Key" = "Сохранить ключ";
 "Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "Разработчик: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT";
 "Open a new conversation" = "Открыть новый разговор";
@@ -56,3 +56,11 @@
 "History message count must be an integer greater than or equal to 0." = "Количество исторических сообщений должно быть целым числом больше или равно 0.";
 "Settings have been updated~" = "Настройки были обновлены~";
 "Tips" = "Советы";
+"Select Room API Model" = "Выберите модель API чата";
+"Deafult API Model" = "Модель по умолчанию для новых чат-комнат";
+"For example: " = "Например:";
+"Use Default" = "Использовать значение по умолчанию";
+"Current use Key: " = "Текущее использование:";
+"API Request timeout (seconds)" = "Таймаут запроса API (секунды)";
+"API host format is incorrect!" = "Формат хоста API неверен!";
+"API timeout must be a number" = "Тайм-аут должен быть числом";

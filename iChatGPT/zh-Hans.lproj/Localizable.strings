@@ -16,8 +16,8 @@
 "Delete Question" = "删除问题";
 "Delete All" = "删除全部";
 "Settings" = "设置";
-"Please enter OpenAI Key" = " 请输入 OpenAI Key";
-"OpenAI Key cannot be empty" = "OpenAI Key 不能为空";
+"Please enter OpenAI Key" = "输入 API Key";
+"OpenAI Key cannot be empty" = "API Key 不能为空";
 "Save Key" = "保存 Key";
 "Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "开发者：37手游iOS技术运营团队\nGitHub 开源：https://github.com/37iOS/iChatGPT";
 "Open a new conversation" = "打开一个新的对话";
@@ -56,3 +56,11 @@
 "History message count must be an integer greater than or equal to 0." = "历史消息计数必须是大于等于 0 的整数。";
 "Settings have been updated~" = "设置已更新~";
 "Tips" = "提示";
+"Select Room API Model" = "当前聊天室使用";
+"Deafult API Model" = "新建聊天室的默认模型";
+"For example: " = "例如：";
+"Use Default" = "使用默认值";
+"Current use Key: " = "当前使用: ";
+"API Request timeout (seconds)" = "API 请求超时时间（秒）";
+"API host format is incorrect!" = "API host 格式不正确！";
+"API timeout must be a number" = "超时时间必须是数字";
