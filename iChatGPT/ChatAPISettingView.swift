@@ -181,7 +181,7 @@ struct ChatAPISettingView: View {
             apiKeyError = "OpenAI Key cannot be empty".localized()
             return false
         }
-        guard !apiTimeout.isEmpty, let timeoutValue = Int(apiTimeout), timeoutValue > 0 else {
+        guard !apiTimeout.isEmpty, let timeoutValue = Double(apiTimeout), timeoutValue > 0 else {
             apiTimeoutError = "API timeout must be a number".localized()
             return false
         }
