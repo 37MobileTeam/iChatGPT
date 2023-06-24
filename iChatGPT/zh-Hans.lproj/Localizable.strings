@@ -19,7 +19,7 @@
 "Please enter OpenAI Key" = "输入 API Key";
 "OpenAI Key cannot be empty" = "API Key 不能为空";
 "Save Key" = "保存 Key";
-"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "开发者：37手游iOS技术运营团队\nGitHub 开源：https://github.com/37iOS/iChatGPT";
+"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "开发者：37手游移动客户端团队\nGitHub 开源：https://github.com/37MobileTeam/iChatGPT";
 "Open a new conversation" = "打开一个新的对话";
 "The current chat log will be saved and closed, and a new chat session will be created." = "当前的对话记录将会保存和关闭，并创建一个新的聊天对话。";
 "Create" = "创建";
@@ -64,3 +64,5 @@
 "API Request timeout (seconds)" = "API 请求超时时间（秒）";
 "API host format is incorrect!" = "API host 格式不正确！";
 "API timeout must be a number" = "超时时间必须是数字";
+"Chats Streaming" = "对话聊天流";
+"Use streaming conversations" = "使用流式输出";

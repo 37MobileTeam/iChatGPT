@@ -18,7 +18,8 @@ struct ChatAPISettingView: View {
     @State private var apiHost = kDeafultAPIHost
     @State private var apiKey = ""
     @State private var maskedAPIKey = ""
-    @State private var apiTimeout = "\(kDeafultAPITimeout)"
+    @State private var apiTimeout = "\(Int(kDeafultAPITimeout))"
+    @State private var isStreamOutput = true
     
     @State private var apiHostError = ""
     @State private var apiKeyError = ""
@@ -45,6 +46,10 @@ struct ChatAPISettingView: View {
         
         if let lastTime = UserDefaults.standard.string(forKey: ChatGPTAPITimeout) {
             _apiTimeout = State(initialValue: lastTime)
+        }
+        
+        if let obj = UserDefaults.standard.object(forKey: ChatGPTStreamOutput), let isStream = obj as? Bool {
+            _isStreamOutput = State(initialValue: isStream)
         }
         
         if let lastKey = lastOpenAIKey() {
@@ -118,6 +123,12 @@ struct ChatAPISettingView: View {
                     }
                 }
                 
+                Section(header: Text("Chats Streaming")) {
+                    Toggle(isOn: $isStreamOutput) {
+                        Text("Use streaming conversations")
+                    }
+                }
+                
                 aboutAppSection
             }
             .listStyle(GroupedListStyle())
@@ -137,7 +148,7 @@ struct ChatAPISettingView: View {
             .onChange(of: selectedModel) { _ in
                 self.isDirty = validateSettings()
             }
-            .onChange(of: [apiHost, apiKey, apiTimeout]) { _ in
+            .onChange(of: [apiHost, apiKey, apiTimeout, String(isStreamOutput)]) { _ in
                 self.isDirty = validateSettings()
             }
             .gesture(
@@ -161,6 +172,7 @@ struct ChatAPISettingView: View {
             UserDefaults.standard.set(apiKey, forKey: ChatGPTOpenAIKey)
         }
         UserDefaults.standard.set(apiTimeout, forKey: ChatGPTAPITimeout)
+        UserDefaults.standard.set(isStreamOutput, forKey: ChatGPTStreamOutput)
         isKeyPresented = false
         chatModel.isRefreshSession = true
     }
@@ -203,27 +215,31 @@ struct ChatAPISettingView: View {
     }
     
     private var aboutAppSection: some View {
-        Section(header: Text("About App".localized())) {
-            ScrollView {
-                VStack {
-                    Text("v \(appVersion ?? "") (\(appSubVersion ?? ""))")
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                        .padding(.bottom, 10)
+        Section(header: Text("About App")) {
+            VStack {
+                ScrollView {
+                    VStack {
+                        Text("v \(appVersion ?? "") (\(appSubVersion ?? ""))")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                            .padding(.bottom, 10)
 
-                    Text(.init("Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT".localized()))
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.bottom, 10)
+                        Text(.init("Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT".localized()))
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.bottom, 10)
 
-                    Text("Contributors：[@iHTCboy](https://github.com/iHTCboy) | [@AlphaGogoo](https://github.com/AlphaGogoo) | [@RbBtSn0w](https://github.com/RbBtSn0w) | [@0xfeedface1993](https://github.com/0xfeedface1993)")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
+                        Text("Contributors：[@iHTCboy](https://github.com/iHTCboy) | [@AlphaGogoo](https://github.com/AlphaGogoo) | [@RbBtSn0w](https://github.com/RbBtSn0w) | [@0xfeedface1993](https://github.com/0xfeedface1993)")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.bottom, 25)
+                    }
                 }
+                .frame(maxHeight: 120)
             }
-            .frame(maxHeight: 120)
+            .frame(maxWidth: .infinity, alignment: .center)
         }
     }
 }

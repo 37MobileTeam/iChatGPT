@@ -42,7 +42,7 @@ struct AIChatView: View {
                 ChatHistoryListView(isKeyPresented: $inputModel.isShowAllChatRoom, chatModel: chatModel, onComplete: { roomID in
                     if roomID != chatModel.roomID {
                         chatModel.resetRoom(roomID)
-                        isScrollListTop.toggle()
+                        chatModel.isScrollListBottom.toggle()
                     }
                 })
             }

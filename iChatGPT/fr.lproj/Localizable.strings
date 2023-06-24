@@ -19,7 +19,7 @@
 "Please enter OpenAI Key" = "Veuillez entrer la clé API";
 "OpenAI Key cannot be empty" = "La clé API ne peut pas être vide";
 "Save Key" = "Enregistrer la clé";
-"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "Développeur : 37 Mobile iOS Tech Team\nGitHub : https://github.com/37iOS/iChatGPT";
+"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "Développeur : 37 Mobile iOS Tech Team\nGitHub : https://github.com/37MobileTeam/iChatGPT";
 "Open a new conversation" = "Ouvrir une nouvelle conversation";
 "The current chat log will be saved and closed, and a new chat session will be created." = "Le journal de chat actuel sera enregistré et fermé, et une nouvelle session de chat sera créée.";
 "Create" = "Créer";
@@ -64,3 +64,5 @@
 "API Request timeout (seconds)" = "Délai d'attente de la demande d'API (secondes)";
 "API host format is incorrect!" = "Le format de l'hôte API est incorrect !";
 "API timeout must be a number" = "Le délai d'attente doit être un nombre";
+"Chats Streaming" = "Flux de chat de dialogue";
+"Use streaming conversations" = "Utiliser la sortie en continu";

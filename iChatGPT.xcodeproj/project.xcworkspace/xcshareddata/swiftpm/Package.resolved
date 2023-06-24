@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/shaps80/MarkdownText.git",
       "state" : {
-        "revision" : "0dbef003e450a59283cefaed433bd267fff87e7f",
-        "version" : "1.0.1"
+        "revision" : "c5f5e3e7d2de5dbccd7756d6b4b3739fdf427c33",
+        "version" : "1.2.0"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MacPaw/OpenAI.git",
       "state" : {
-        "revision" : "c1ee239b20f97344bb50ffd24361740ce1963181",
-        "version" : "0.1.1"
+        "revision" : "b1161597810167a035ae403c81ac6f1a542e41f9",
+        "version" : "0.2.2"
       }
     },
     {
@@ -37,12 +37,21 @@
       }
     },
     {
+      "identity" : "swiftbackports",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/shaps80/SwiftBackports",
+      "state" : {
+        "revision" : "ddca6a237c1ba2291d5a3cc47ec8480ce6e9f805",
+        "version" : "1.0.3"
+      }
+    },
+    {
       "identity" : "swiftuibackports",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/shaps80/SwiftUIBackports",
       "state" : {
-        "revision" : "d9842f24656ff7c6116dc207b60f0b6d302a5a9a",
-        "version" : "1.9.0"
+        "revision" : "3042f0cf4b9f0d5b0bb08ad17f742a43bc4fdfc5",
+        "version" : "2.8.0"
       }
     },
     {

@@ -6,6 +6,7 @@ let ChatGPTOpenAIKey = "ChatGPTOpenAIKey"
 let ChatGPTModelName = "ChatGPTModelName"
 let ChatGPTAPIHost = "ChatGPTAPIHost"
 let ChatGPTAPITimeout = "ChatGPTAPITimeout"
+let ChatGPTStreamOutput = "ChatGPTStreamOutput"
 
 // MARK: - Model
 struct AIChat: Codable {
@@ -26,6 +27,8 @@ class AIChatModel: ObservableObject {
     @Published var isScrollListBottom: Bool = true
     /// 请求是否带上之前的提问和问答
     @Published var isSendContext: Bool = true
+    /// 使用流式输出
+    @Published var isStreamOutput: Bool = true
     /// 对话内容模型
     @Published var contents: [AIChat] = [] {
         didSet {
@@ -72,11 +75,12 @@ class AIChatModel: ObservableObject {
         contents.append(chat)
         isScrollListBottom.toggle()
         
-        self.bot?.getChatGPTAnswer(prompts: contents, sendContext: isSendContext, roomModel: roomModel) { answer in
+        self.bot?.getChatGPTAnswer(prompts: contents, sendContext: isSendContext, isStream: isStreamOutput, roomModel: roomModel) { answer in
             let content = answer
             DispatchQueue.main.async { [self] in
-                chat.answer = content
+                chat.answer = "\(chat.answer ?? "")\(content)"
                 chat.isResponse = true
+                isScrollListBottom.toggle()
                 // 找到要替换的元素在数组中的索引位置
                 if let index = contents.lastIndex(where: { $0.datetime == chat.datetime && $0.issue == chat.issue }) {
                     contents[index] = chat
@@ -91,6 +95,9 @@ class AIChatModel: ObservableObject {
         let apiTimeout = TimeInterval(UserDefaults.standard.string(forKey: ChatGPTAPITimeout) ?? "") ?? kDeafultAPITimeout
         let apiHost = UserDefaults.standard.string(forKey: ChatGPTAPIHost)
         bot = Chatbot(openAIKey: apiKey, timeout: apiTimeout, host: apiHost)
+        if let obj = UserDefaults.standard.object(forKey: ChatGPTStreamOutput), let isStream = obj as? Bool {
+            isStreamOutput = isStream
+        }
     }
     
     func saveMessagesData() {
