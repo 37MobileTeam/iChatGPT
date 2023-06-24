@@ -10,14 +10,13 @@ OpenAI ChatGPT app for  iOS, iPadOS, macoS
 
 #### 更新说明
 
-最新版本 v2.6
+最新版本 v2.7
 
-- Support custom API URL.（支持自定义 API URL。）
-- Set API timeout duration.（设置 API 超时时间。）
-- Configure API model for individual chat rooms.（支持聊天室单独设置 API 模型。）
-- Support more model choices (e.g., gpt-4-32k).（支持更多模型选择，如 gpt-4-32k 等。）
-- Change icons to local images and differentiate gpt-4 icons.（将图标更改为本地图片并区分 gpt-4 图标。）
-- Fix auto letter conversion issue with consecutive characters (e.g., in Chinese or Japanese).（修复连续输入字符时自动变为字母的问题，如中文或日文。）
+- Streamlined output support. (支持流式输出)
+- Added modules for gpt-3.5-turbo-16k, gpt-3.5-turbo-16k-061, and gpt-4-32k-0613. (增加模块，支持 gpt-3.5-turbo-16k、gpt-3.5-turbo-16k-061 和 gpt-4-32k-0613)
+- Increased request timeout to 60 seconds to reduce timeout issues. (请求超时时间调整为 60 秒，减少请求超时问题)
+- Switched to historical conversations, automatically scrolling to the latest content. (切换历史对话，默认滚动到最新的对话内容)
+- Optimized several user experience details. (优化一些体验细节)
 
 
 **支持功能**
@@ -106,6 +105,14 @@ TestFlight 下载地址：[https://testflight.apple.com/join/GR4BOt2M](https://t
 
 
 #### 3.4 历史更新功能
+
+**v2.6:**
+- Support custom API URL.（支持自定义 API URL。）
+- Set API timeout duration.（设置 API 超时时间。）
+- Configure API model for individual chat rooms.（支持聊天室单独设置 API 模型。）
+- Support more model choices (e.g., gpt-4-32k).（支持更多模型选择，如 gpt-4-32k 等。）
+- Change icons to local images and differentiate gpt-4 icons.（将图标更改为本地图片并区分 gpt-4 图标。）
+- Fix auto letter conversion issue with consecutive characters (e.g., in Chinese or Japanese).（修复连续输入字符时自动变为字母的问题，如中文或日文。）
 
 **v2.5:**
 - Added chat room settings with Prompt and Temperature parameter configuration. (新增聊天室设置功能，支持 Prompt 和 Temperature 参数配置。)

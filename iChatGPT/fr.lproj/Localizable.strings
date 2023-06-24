@@ -64,3 +64,5 @@
 "API Request timeout (seconds)" = "Délai d'attente de la demande d'API (secondes)";
 "API host format is incorrect!" = "Le format de l'hôte API est incorrect !";
 "API timeout must be a number" = "Le délai d'attente doit être un nombre";
+"Chats Streaming" = "Flux de chat de dialogue";
+"Use streaming conversations" = "Utiliser la sortie en continu";

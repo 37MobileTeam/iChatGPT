@@ -64,3 +64,5 @@
 "API Request timeout (seconds)" = "API-Anforderungszeitüberschreitung (Sekunden)";
 "API host format is incorrect!" = "API-Host-Format ist falsch!";
 "API timeout must be a number" = "Zeitüberschreitung muss eine Zahl sein";
+"Chats Streaming" = "Dialog-Chat-Stream";
+"Use streaming conversations" = "Verwenden Sie die Streaming-Ausgabe";

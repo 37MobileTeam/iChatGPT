@@ -19,6 +19,7 @@ struct ChatAPISettingView: View {
     @State private var apiKey = ""
     @State private var maskedAPIKey = ""
     @State private var apiTimeout = "\(Int(kDeafultAPITimeout))"
+    @State private var isStreamOutput = true
     
     @State private var apiHostError = ""
     @State private var apiKeyError = ""
@@ -45,6 +46,10 @@ struct ChatAPISettingView: View {
         
         if let lastTime = UserDefaults.standard.string(forKey: ChatGPTAPITimeout) {
             _apiTimeout = State(initialValue: lastTime)
+        }
+        
+        if let obj = UserDefaults.standard.object(forKey: ChatGPTStreamOutput), let isStream = obj as? Bool {
+            _isStreamOutput = State(initialValue: isStream)
         }
         
         if let lastKey = lastOpenAIKey() {
@@ -118,6 +123,12 @@ struct ChatAPISettingView: View {
                     }
                 }
                 
+                Section(header: Text("Chats Streaming")) {
+                    Toggle(isOn: $isStreamOutput) {
+                        Text("Use streaming conversations")
+                    }
+                }
+                
                 aboutAppSection
             }
             .listStyle(GroupedListStyle())
@@ -137,7 +148,7 @@ struct ChatAPISettingView: View {
             .onChange(of: selectedModel) { _ in
                 self.isDirty = validateSettings()
             }
-            .onChange(of: [apiHost, apiKey, apiTimeout]) { _ in
+            .onChange(of: [apiHost, apiKey, apiTimeout, String(isStreamOutput)]) { _ in
                 self.isDirty = validateSettings()
             }
             .gesture(
@@ -161,6 +172,7 @@ struct ChatAPISettingView: View {
             UserDefaults.standard.set(apiKey, forKey: ChatGPTOpenAIKey)
         }
         UserDefaults.standard.set(apiTimeout, forKey: ChatGPTAPITimeout)
+        UserDefaults.standard.set(isStreamOutput, forKey: ChatGPTStreamOutput)
         isKeyPresented = false
         chatModel.isRefreshSession = true
     }

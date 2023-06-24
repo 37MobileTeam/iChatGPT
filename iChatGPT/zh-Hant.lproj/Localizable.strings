@@ -64,3 +64,5 @@
 "API Request timeout (seconds)" = "API 請求超時時間（秒）";
 "API host format is incorrect!" = "API 主機格式不正確！";
 "API timeout must be a number" = "超時時間必須是數字";
+"Chats Streaming" = "對話聊天流";
+"Use streaming conversations" = "使用流式輸出";
