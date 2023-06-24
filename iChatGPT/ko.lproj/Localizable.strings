@@ -19,7 +19,7 @@
 "Please enter OpenAI Key" = "API Key를 입력해주세요";
 "OpenAI Key cannot be empty" = "API Key는 비워둘 수 없습니다";
 "Save Key" = "키 저장";
-"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "개발자: 37 모바일 iOS 기술 팀\nGitHub: https://github.com/37iOS/iChatGPT";
+"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "개발자: 37 모바일 iOS 기술 팀\nGitHub: https://github.com/37MobileTeam/iChatGPT";
 "Open a new conversation" = "새 대화 열기";
 "The current chat log will be saved and closed, and a new chat session will be created." = "현재 채팅 로그는 저장되고 닫히며 새로운 채팅 세션이 생성됩니다.";
 "Create" = "생성";

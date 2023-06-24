@@ -19,7 +19,7 @@
 "Please enter OpenAI Key" = "Bitte geben Sie den API-Schlüssel ein";
 "OpenAI Key cannot be empty" = "API-Schlüssel darf nicht leer sein";
 "Save Key" = "Schlüssel speichern";
-"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "Entwickler: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT";
+"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "Entwickler: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37MobileTeam/iChatGPT";
 "Open a new conversation" = "Ein neues Gespräch öffnen";
 "The current chat log will be saved and closed, and a new chat session will be created." = "Das aktuelle Chat-Protokoll wird gespeichert und geschlossen, und eine neue Chat-Sitzung wird erstellt.";
 "Create" = "Erstellen";

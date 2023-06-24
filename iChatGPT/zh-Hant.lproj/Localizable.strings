@@ -19,7 +19,7 @@
 "Please enter OpenAI Key" = "輸入 API Key";
 "OpenAI Key cannot be empty" = "API Key 不能為空";
 "Save Key" = "保存 Key";
-"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "開發者：37手遊iOS技術運營團隊\nGitHub 開源：https://github.com/37iOS/iChatGPT";
+"Developer: 37 Mobile iOS Tech Team\nGitHub: https://github.com/37iOS/iChatGPT" = "開發者：37手遊移動客戶端團隊\nGitHub 開源：https://github.com/37MobileTeam/iChatGPT";
 "Open a new conversation" = "打開一個新的對話";
 "The current chat log will be saved and closed, and a new chat session will be created." = "當前的對話記錄將會保存和關閉，並創建一個新的聊天對話。";
 "Create" = "創建";

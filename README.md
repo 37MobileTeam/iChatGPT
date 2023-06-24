@@ -73,7 +73,7 @@ TestFlight 下载地址：[https://testflight.apple.com/join/GR4BOt2M](https://t
 - Mac Apple Silicon M1/M2+
 - Mac Intel x86_64
 
-- Mac 下载：[Releases](https://github.com/37iOS/iChatGPT/releases)
+- Mac 下载：[Releases](https://github.com/37MobileTeam/iChatGPT/releases)
 
 
 #### 2.3 Xcode 构建
@@ -102,7 +102,7 @@ TestFlight 下载地址：[https://testflight.apple.com/join/GR4BOt2M](https://t
 
 #### 3.3 More Questions
 
-- [New Issue](https://github.com/37iOS/iChatGPT/issues/new/choose)
+- [New Issue](https://github.com/37MobileTeam/iChatGPT/issues/new/choose)
 
 
 #### 3.4 历史更新功能

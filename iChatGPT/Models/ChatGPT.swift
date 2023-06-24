@@ -11,8 +11,8 @@ import Combine
 import OpenAI
 
 let kDeafultAPIHost = "api.openai.com"
-let kDeafultAPITimeout = 30.0
-let kAPIModels = [Model.gpt3_5Turbo, Model.gpt4, Model.gpt4_32k, Model.gpt4_0314, Model.gpt4_32k_0314, Model.gpt3_5Turbo0301]
+let kDeafultAPITimeout = 60.0
+let kAPIModels = [Model.gpt3_5Turbo, Model.gpt4, Model.gpt4_32k, Model.gpt4_32k_0314, Model.gpt4_32k_0613, Model.gpt3_5Turbo_16k, Model.gpt3_5Turbo_16k_0613]
 
 class Chatbot {
     var timeout: TimeInterval = 60
