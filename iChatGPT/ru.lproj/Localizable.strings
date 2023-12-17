@@ -53,7 +53,7 @@
 "How much context information is carried when sending a dialog." = "Сколько контекстной информации передается при отправке диалога.";
 "Default is the last 3 conversations." = "По умолчанию это последние 3 разговора.";
 "Temperature is between 0 and 2." = "Temperature находится между 0 и 2.";
-"History message count must be an integer greater than or equal to 0." = "Количество исторических сообщений должно быть целым числом больше или равно 0.";
+"History message count must be an integer greater than or equal to 0." = "Количество исторических сообщений должно быть целым числом, большим или равным 0.";
 "Settings have been updated~" = "Настройки были обновлены~";
 "Tips" = "Советы";
 "Select Room API Model" = "Выберите модель API чата";
