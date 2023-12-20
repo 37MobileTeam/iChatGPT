@@ -24,7 +24,7 @@ struct AIChatView: View {
                 chatList
                 Spacer()
                 ChatInputView(searchText: $inputModel.searchText, chatModel: chatModel)
-                    .padding([.leading, .trailing], 12)
+                    .padding([.leading, .trailing], 14)
             }
             .markdownHeadingStyle(.custom)
             .markdownQuoteStyle(.custom)
