@@ -1,4 +1,5 @@
 {
+  "originHash" : "4826765fd835f5d08c8f3595dc5951f2b762933a5d04b09acf3df7b967c873bc",
   "pins" : [
     {
       "identity" : "markdowntext",
@@ -14,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MacPaw/OpenAI.git",
       "state" : {
-        "revision" : "ac5892fd0de8d283362ddc30f8e9f1a0eaba8cc0",
-        "version" : "0.2.5"
+        "revision" : "fd13a41e987004d14f1793c570721953a2767b03",
+        "version" : "0.2.9"
       }
     },
     {
@@ -50,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/shaps80/SwiftUIBackports",
       "state" : {
-        "revision" : "3042f0cf4b9f0d5b0bb08ad17f742a43bc4fdfc5",
-        "version" : "2.8.0"
+        "revision" : "f5f23b016eeda6642a0fe1020241af19c9c05556",
+        "version" : "2.8.1"
       }
     },
     {
@@ -60,9 +61,9 @@
       "location" : "https://github.com/SwiftUIX/SwiftUIX.git",
       "state" : {
         "branch" : "master",
-        "revision" : "ec2c0719f048d7294749cb2e29df7560133ef09a"
+        "revision" : "b213ed74bb69b02ec6b1c9ccf517116d1648164b"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
